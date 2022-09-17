@@ -1,0 +1,1 @@
+export { SuspenseUI } from './SuspenseUI'
