@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react'
+import { ContentWrapper, StyledContent } from '../Atoms'
 
 type Props = {
   children: ReactNode
@@ -6,8 +7,8 @@ type Props = {
 
 export const Content: FC<Props> = ({ children }) => {
   return (
-    <div>
-      {children}
-    </div>
+    <StyledContent>
+      <ContentWrapper>{children}</ContentWrapper>
+    </StyledContent>
   )
 }

@@ -1,93 +1,62 @@
 import React, { FC, Fragment, useCallback, useMemo } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { NavItem, NavItemSubs } from '../Atoms'
-import { useTranslation } from 'react-i18next'
 import cn from 'classnames'
 import { AppNavigation } from 'Config'
 import { ChevronDownIcon } from 'Icons/Chevron'
 
 type Props = AppNavigation & {
+  id: string
   openId: string | null
-  setOpenId: (id: string | null) => void,
-  isChild?: boolean
+  setOpenId: (id: string | null) => void
+  parentPath?: string
 }
 
-export const SidebarMenuItem: FC<Props> = (
-  {
-    children,
-    title,
-    path,
-    openId,
-    setOpenId,
-    isChild
-  },
-) => {
-  const { t } = useTranslation()
+export const SidebarMenuItem: FC<Props> = ({ children, title, path, openId, setOpenId, parentPath, id }) => {
   const { pathname } = useLocation()
   const hasChildren = useMemo(() => children, [ children ])
 
-  const active = useMemo(() => path === '/'
-    ? path === pathname
-    : pathname.indexOf(path.substring(1)) !== -1, [ path, pathname ])
+  const active = useMemo(() => (path === '/' ? path === pathname : pathname.indexOf(path.substring(1)) !== -1), [ path, pathname ])
 
   const handleClick = useCallback(() => {
-    if (title === openId) {
+    if (id === openId) {
       setOpenId(null)
     } else {
-      setOpenId(title)
+      setOpenId(id)
     }
-  }, [ openId, setOpenId, title ])
+  }, [ id, openId, setOpenId ])
 
   return (
-    <NavItem className={cn({ child: !!isChild })}>
-      {
-        hasChildren
-          ? (
-            <div className={cn('nav-title', { active })} onClick={handleClick}>
-              <div className='menu-title'>
-                {t(title)}
-              </div>
-              <div className='icon-box'>
-                <ChevronDownIcon />
-              </div>
-            </div>
-          )
-          : (
-            <NavLink
-              className={cn({ 'nav-link': true })}
-              to={path}
-            >
-              <div className='menu-title'>
-                {t(title)}
-              </div>
-            </NavLink>
-          )
-      }
-      {
-        !!children && (
-          <NavItemSubs className={cn({ show: openId === title })}>
-            {
-              children.map((item, idx) => (
-                <Fragment key={`${idx + 1}`}>
-                  {
-                    !item.hidden
-                      ? (
-                        <SidebarMenuItem
-                          {...item}
-                          openId={openId}
-                          setOpenId={setOpenId}
-                          path={item.path}
-                          isChild={true}
-                        />
-                      )
-                      : null
-                  }
-                </Fragment>
-              ))
-            }
-          </NavItemSubs>
-        )
-      }
+    <NavItem className={cn({ child: !!parentPath })}>
+      {hasChildren ? (
+        <div className={cn('nav-title', { active })} onClick={handleClick}>
+          <div className='menu-title'>{title}</div>
+          <div className='icon-box'>
+            <ChevronDownIcon />
+          </div>
+        </div>
+      ) : (
+        <NavLink className={cn({ 'nav-link': true })} to={parentPath ? `${parentPath}/${path}` : `/${path}`}>
+          <div className='menu-title'>{title}</div>
+        </NavLink>
+      )}
+      {!!children && (
+        <NavItemSubs className={cn({ show: openId === id })}>
+          {children.map((item, idx) => (
+            <Fragment key={`${idx + 1}`}>
+              {!item.hidden ? (
+                <SidebarMenuItem
+                  {...item}
+                  id={item.path}
+                  openId={openId}
+                  setOpenId={setOpenId}
+                  path={item.path} parentPath={`/${path}`}
+                />
+              ) : null}
+            </Fragment>
+          ))}
+        </NavItemSubs>
+      )}
     </NavItem>
   )
 }

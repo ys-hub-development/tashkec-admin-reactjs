@@ -10,19 +10,11 @@ export const mainRoutes = {
       children: [
         {
           path: 'banner',
-          element: (
-            <SuspenseUI>
-              banner
-            </SuspenseUI>
-          ),
+          element: <SuspenseUI>banner</SuspenseUI>,
         },
         {
           path: 'logo',
-          element: (
-            <SuspenseUI>
-              logo
-            </SuspenseUI>
-          ),
+          element: <SuspenseUI>logo</SuspenseUI>,
         },
       ],
     },

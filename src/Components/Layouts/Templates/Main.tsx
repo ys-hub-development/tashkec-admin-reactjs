@@ -7,14 +7,16 @@ export const MainLayout = () => {
   const { isAuthenticated } = useStore($AppStore)
 
   if (!isAuthenticated) {
-    return <Navigate to='/login' />
+    return <Navigate to='/sign-in' />
   }
 
   return (
     <>
       <Header />
       <Sidebar />
-      <Content><Outlet /></Content>
+      <Content>
+        <Outlet />
+      </Content>
     </>
   )
 }

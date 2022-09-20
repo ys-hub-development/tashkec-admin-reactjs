@@ -5,11 +5,13 @@ export const StyledHeader = styled('header')(() => ({
   left: 'var(--sidebar-width)',
   top: 0,
   right: 0,
-  padding: '16px 24px 0 24px',
+  padding: '16px 30px 0 30px',
   height: 'var(--header-height)',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
+  zIndex: 10,
+  backgroundColor: 'var(--body-bg)',
 }))
 
 export const HeaderProfile = styled(Stack)(({ theme }) => ({
@@ -18,5 +20,5 @@ export const HeaderProfile = styled(Stack)(({ theme }) => ({
   borderRadius: 10,
   backgroundColor: theme.palette.background.default,
   fontSize: 14,
-  color: 'var(--profile-color)'
+  color: 'var(--profile-color)',
 }))

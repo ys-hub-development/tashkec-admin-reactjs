@@ -1,8 +1,11 @@
+import { AuthSection } from '../Atoms'
+import { LoginForm } from 'Views/Auth/Organisms'
+
 const LoginPage = () => {
   return (
-    <div>
-      login page
-    </div>
+    <AuthSection>
+      <LoginForm />
+    </AuthSection>
   )
 }
 

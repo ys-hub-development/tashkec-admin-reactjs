@@ -23,24 +23,9 @@ export const Sidebar = () => {
       <Stack spacing={3}>
         <Logo />
         <div>
-          {
-            appNavigation.map((item, idx) => (
-              <Fragment key={`${idx + 1}`}>
-                {
-                  !item.hidden
-                    ? (
-                      <SidebarMenuItem
-                        {...item}
-                        openId={openId}
-                        setOpenId={setOpenId}
-                        path={item.path.indexOf('/') === -1 ? `/${item.path}` : item.path}
-                      />
-                    )
-                    : null
-                }
-              </Fragment>
-            ))
-          }
+          {appNavigation.map((item, idx) => (
+            <Fragment key={`${idx + 1}`}>{!item.hidden ? <SidebarMenuItem {...item} id={item.path} openId={openId} setOpenId={setOpenId} /> : null}</Fragment>
+          ))}
         </div>
       </Stack>
     </StyledSidebar>

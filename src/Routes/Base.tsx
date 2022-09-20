@@ -1,6 +1,7 @@
 import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
 import { Navigate } from 'react-router-dom'
+import { UIKitPage } from 'Views/UIKit'
 
 export const baseRoutes = {
   path: '',
@@ -10,8 +11,22 @@ export const baseRoutes = {
       element: <MainLayout />,
       children: [
         {
-          path: '/',
-          element: <Navigate to='/main/banner' />,
+          path: '',
+          element: <Navigate to='/uikit' />,
+        },
+      ],
+    },
+    {
+      path: 'uikit',
+      element: <MainLayout />,
+      children: [
+        {
+          path: '',
+          element: (
+            <SuspenseUI>
+              <UIKitPage />
+            </SuspenseUI>
+          ),
         },
       ],
     },
@@ -21,11 +36,7 @@ export const baseRoutes = {
       children: [
         {
           path: '',
-          element: (
-            <SuspenseUI>
-              404
-            </SuspenseUI>
-          ),
+          element: <SuspenseUI>404</SuspenseUI>,
         },
       ],
     },
