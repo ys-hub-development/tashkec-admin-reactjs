@@ -12,7 +12,7 @@ export const baseRoutes = {
       children: [
         {
           path: '',
-          element: <Navigate to='/uikit' />,
+          element: <Navigate to='/main/banner' />,
         },
       ],
     },

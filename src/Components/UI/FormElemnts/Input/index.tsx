@@ -4,6 +4,7 @@ import { InputRoot, StyledInputElement } from './style'
 import { Box, Stack } from '@mui/material'
 import cn from 'classnames'
 import { EndAdornmentWrapper, InputHelperText, InputWrapper, Label } from '../style'
+import { VisibilityIcon, VisibilityOffIcon } from 'Icons/Visibility'
 
 type Props = InputUnstyledProps & {
   label: string
@@ -35,8 +36,8 @@ export const InputUI = forwardRef(function CustomInput(
           >
             {
               passwordVisible
-                ? <i className='bx bx-show' />
-                : <i className='bx bx-hide' />
+                ? <VisibilityOffIcon />
+                : <VisibilityIcon />
             }
           </Box>
         </EndAdornmentWrapper>

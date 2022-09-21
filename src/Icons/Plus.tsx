@@ -6,3 +6,12 @@ export const PlusCircleFilledIcon = () => (
     />
   </svg>
 )
+
+export const PlusIcon = () => (
+  <svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path d='M16.0005 2V30' stroke='currentColor' strokeWidth='4' strokeLinecap='round' strokeLinejoin='round' />
+    <path d='M2 15.9998L30 15.9998' stroke='currentColor' strokeWidth='4' strokeLinecap='round'
+          strokeLinejoin='round' />
+  </svg>
+
+)

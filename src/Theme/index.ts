@@ -15,13 +15,6 @@ export const theme = createTheme({
   },
   components: {
     MuiButton: MuiButtonComponent(),
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          color: TEXT_COLOR.primary,
-        },
-      },
-    },
   },
   typography: TypographyComponent(),
 })

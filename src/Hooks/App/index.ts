@@ -1,0 +1,1 @@
+export { useLayoutHeading } from './useLayoutHeading'

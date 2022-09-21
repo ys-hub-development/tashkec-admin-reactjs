@@ -1,0 +1,1 @@
+export { useMainPicture } from './useMainPicture'

@@ -1,5 +1,6 @@
-import { MainLayout } from '../Components/Layouts'
-import { SuspenseUI } from '../Components/UI'
+import { MainLayout } from 'Components/Layouts'
+import { SuspenseUI } from 'Components/UI'
+import { BannerPage, LogoPage } from 'Views/Home'
 
 export const mainRoutes = {
   path: '',
@@ -10,11 +11,11 @@ export const mainRoutes = {
       children: [
         {
           path: 'banner',
-          element: <SuspenseUI>banner</SuspenseUI>,
+          element: <SuspenseUI><BannerPage /></SuspenseUI>,
         },
         {
           path: 'logo',
-          element: <SuspenseUI>logo</SuspenseUI>,
+          element: <SuspenseUI><LogoPage /></SuspenseUI>,
         },
       ],
     },

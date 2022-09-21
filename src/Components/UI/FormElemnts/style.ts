@@ -13,7 +13,7 @@ export const Label = styled(FormLabel)(({ theme }) => ({
   },
 }))
 
-export const EndAdornmentWrapper = styled('div')(() => ({
+export const EndAdornmentWrapper = styled('div')(({theme}) => ({
   position: 'absolute',
   right: 0,
   top: '50%',
@@ -22,6 +22,7 @@ export const EndAdornmentWrapper = styled('div')(() => ({
   flexDirection: 'column',
   justifyContent: 'center',
   padding: '0 12px',
+  color: theme.palette.text.secondary
 }))
 
 export const InputHelperText = styled('div')(({ theme }) => ({

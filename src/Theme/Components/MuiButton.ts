@@ -6,7 +6,7 @@ export const MuiButtonComponent = (): Components['MuiButton'] => ({
     disableRipple: true,
     disableElevation: true,
     variant: 'contained',
-    size: 'large',
+    size: 'medium',
   },
   styleOverrides: {
     root: {
@@ -15,12 +15,21 @@ export const MuiButtonComponent = (): Components['MuiButton'] => ({
       lineHeight: '17px',
       borderRadius: 10,
 
+      svg: {
+        width: 20,
+        height: 20
+      },
+
       '&.Mui-disabled': {
         cursor: 'not-allowed',
       },
     },
     sizeLarge: {
-      padding: '14px 21.5px ',
+      padding: '15px 22px',
+      lineHeight: '18px',
+    },
+    sizeMedium: {
+      padding: '14px 22px',
     },
     containedSecondary: {
       '&.light': {

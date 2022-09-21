@@ -15,6 +15,7 @@ export const StyledInputElement = styled('input')(({ theme }) => ({
   display: 'block',
   outline: 'none',
   margin: '0',
+  transition: '0.25s ease',
 
   '&::placeholder': {
     color: theme.palette.text.secondary,

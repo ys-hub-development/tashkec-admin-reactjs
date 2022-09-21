@@ -14,9 +14,9 @@ export const AuthSection = styled('div')(() => ({
 }))
 
 export const AuthForm = styled('form')(() => ({
-  maxWidth: 425,
+  maxWidth: 349,
   width: '100%',
-  padding: '50px 38px 100px 38px',
+  padding: '50px 38px 72px 38px',
   borderRadius: 16,
   boxShadow: '0 14px 20px rgba(20, 23, 38, 0.05)',
   backgroundColor: '#fff'

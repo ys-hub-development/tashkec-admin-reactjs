@@ -1,0 +1,1 @@
+export { MainPicture } from './MainPicture'
