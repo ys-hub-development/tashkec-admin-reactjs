@@ -21,4 +21,5 @@ export const HeaderProfile = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   fontSize: 14,
   color: 'var(--profile-color)',
+  cursor: 'pointer'
 }))

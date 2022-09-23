@@ -80,3 +80,9 @@ export const NavItemSubs = styled('div')(() => ({
     maxHeight: '260px',
   },
 }))
+
+export const SidebarMenu = styled('div')(() => ({
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  maxHeight: 'calc(100vh - var(--header-height) - 64px )'
+}))

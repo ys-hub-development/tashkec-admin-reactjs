@@ -1,7 +1,12 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const httpClient = axios.create({})
+const httpClient = axios.create({
+  baseURL: 'http://192.168.0.106:8080',
+  headers: {
+    'Content-Type': 'application/json',
+  }
+})
 
 
 httpClient.interceptors.response.use(
@@ -12,6 +17,7 @@ httpClient.interceptors.response.use(
       if (status === 401) {
         Cookies.remove('token')
         Cookies.remove('refresh-token')
+        window.location.replace('/sign-in')
       } else if (status === 400) {
         return Promise.reject(error)
       } else {

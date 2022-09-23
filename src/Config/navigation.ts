@@ -14,7 +14,7 @@ import {
   SchedulerPathTitle,
   InstitutionPathTitle,
   FaqPathTitle,
-  FaqPath,
+  FaqPath, UserPathTitle, UserPath, CommonPathTitle, CommonPath,
 } from 'Constants/Navigation'
 
 export type AppNavigationBasic = {
@@ -27,7 +27,7 @@ export type AppNavigation = AppNavigationBasic & {
   children?: AppNavigationBasic[]
 }
 
-export const appNavigation: AppNavigation[] = [
+export const appPublicNavigation: AppNavigation[] = [
   {
     title: MainPathTitle.main,
     path: MainPath.main,
@@ -86,3 +86,24 @@ export const appNavigation: AppNavigation[] = [
     hidden: true,
   },
 ]
+
+export const appAdminNavigation:AppNavigation[] = [
+  {
+    title: UserPathTitle.main,
+    path: UserPath.main,
+    children: [
+      {
+        title: CommonPathTitle.add,
+        path: CommonPath.add,
+        hidden: true,
+      },
+      {
+        title: CommonPathTitle.edit,
+        path: `${CommonPath.edit}/:userId`,
+        hidden: true,
+      }
+    ]
+  },
+]
+
+export const appNavigation = [...appPublicNavigation, ...appAdminNavigation]

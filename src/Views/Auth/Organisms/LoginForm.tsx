@@ -1,12 +1,13 @@
 import { AuthForm } from '../Atoms'
 import { useLoginForm } from '../Hooks'
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, CircularProgress, Grid, Typography } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import { InputUI } from 'Components/UI/FormElemnts'
+import { APP } from 'Constants/App'
 
 export const LoginForm = () => {
-  const { form, onSubmit } = useLoginForm()
-  const { control, handleSubmit } = form
+  const { form, onSubmit, mutation } = useLoginForm()
+  const { control, handleSubmit, formState: { errors } } = form
 
   return (
     <AuthForm onSubmit={handleSubmit(onSubmit)}>
@@ -47,7 +48,14 @@ export const LoginForm = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button fullWidth type='submit' size='large'>Войти в систему</Button>
+          <Button
+            size='large'
+            fullWidth type='submit'
+            startIcon={mutation.isLoading && <CircularProgress size={20} />}
+            disabled={mutation.isLoading || !!errors.password?.message || !!errors.username?.message}
+          >
+            {APP.ENTER_TO_SYSTEM}
+          </Button>
         </Grid>
       </Grid>
     </AuthForm>

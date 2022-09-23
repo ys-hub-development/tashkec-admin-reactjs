@@ -1,7 +1,11 @@
-export enum MainPath {
-  main = 'main',
-  banner = 'banner',
-  logo = 'logo',
+export enum CommonPath {list = 'list', add = 'add', edit = 'edit'}
+
+export enum CommonPathTitle {add = 'Добавить', edit = 'Редактировать'}
+
+export enum MainPath {main = 'main', banner = 'banner', logo = 'logo'}
+
+export enum UserPath {
+  main = 'users',
 }
 
 export enum AboutPath {
@@ -46,6 +50,10 @@ export enum MainPathTitle {
   main = 'Главная',
   banner = 'Баннеры',
   logo = 'Логотипы',
+}
+
+export enum UserPathTitle {
+  main = 'Пользователи',
 }
 
 export enum AboutPathTitle {

@@ -3,6 +3,7 @@ import { APP } from 'Constants/App'
 import { useMainPicture } from '../Hooks'
 import { PictureContext } from 'Views/Home/Context/PictureContext'
 import { MainPicture } from 'Views/Home/Organisms'
+import { SectionHeading } from 'Components/SectionHeading'
 
 const BannerPage = () => {
   const hook = useMainPicture({ type: 'banner' })
@@ -10,7 +11,10 @@ const BannerPage = () => {
 
   return (
     <PictureContext.Provider value={{ ...hook }}>
-      <Grid container spacing={4}>
+      <Grid container rowSpacing={4}>
+        <Grid item xs={12}>
+          <SectionHeading />
+        </Grid>
         <Grid item xs={12}>
           <MainPicture />
         </Grid>

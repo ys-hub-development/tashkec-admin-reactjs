@@ -17,11 +17,17 @@ export const MuiButtonComponent = (): Components['MuiButton'] => ({
 
       svg: {
         width: 20,
-        height: 20
+        height: 20,
       },
 
       '&.Mui-disabled': {
         cursor: 'not-allowed',
+      },
+    },
+    sizeSmall: {
+      svg: {
+        height: 16,
+        width: 16
       },
     },
     sizeLarge: {

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useCallback, useMemo } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { NavItem, NavItemSubs } from '../Atoms'
 import cn from 'classnames'
@@ -14,7 +14,7 @@ type Props = AppNavigation & {
 
 export const SidebarMenuItem: FC<Props> = ({ children, title, path, openId, setOpenId, parentPath, id }) => {
   const { pathname } = useLocation()
-  const hasChildren = useMemo(() => children, [ children ])
+  const childrenList = useMemo(() => children && children.filter(item => !item.hidden), [ children ])
 
   const active = useMemo(() => (path === '/' ? path === pathname : pathname.indexOf(path.substring(1)) !== -1), [ path, pathname ])
 
@@ -28,7 +28,7 @@ export const SidebarMenuItem: FC<Props> = ({ children, title, path, openId, setO
 
   return (
     <NavItem className={cn({ child: !!parentPath })}>
-      {hasChildren ? (
+      {childrenList && childrenList?.length > 0 ? (
         <div className={cn('nav-title', { active })} onClick={handleClick}>
           <div className='menu-title'>{title}</div>
           <div className='icon-box'>
@@ -36,24 +36,25 @@ export const SidebarMenuItem: FC<Props> = ({ children, title, path, openId, setO
           </div>
         </div>
       ) : (
-        <NavLink className={cn({ 'nav-link': true })} to={parentPath ? `${parentPath}/${path}` : `/${path}`}>
+        <NavLink
+          onClick={() => window.scroll(0, 0)}
+          className={cn({ 'nav-link': true })}
+          to={parentPath ? `${parentPath}/${path}` : `/${path}`}
+        >
           <div className='menu-title'>{title}</div>
         </NavLink>
       )}
-      {!!children && (
+      {childrenList && childrenList.length > 0 && (
         <NavItemSubs className={cn({ show: openId === id })}>
-          {children.map((item, idx) => (
-            <Fragment key={`${idx + 1}`}>
-              {!item.hidden ? (
-                <SidebarMenuItem
-                  {...item}
-                  id={item.path}
-                  openId={openId}
-                  setOpenId={setOpenId}
-                  path={item.path} parentPath={`/${path}`}
-                />
-              ) : null}
-            </Fragment>
+          {childrenList.map((item) => (
+            <SidebarMenuItem
+              key={item.path}
+              {...item}
+              id={item.path}
+              openId={openId}
+              setOpenId={setOpenId}
+              path={item.path} parentPath={`/${path}`}
+            />
           ))}
         </NavItemSubs>
       )}

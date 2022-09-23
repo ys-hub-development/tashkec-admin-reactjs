@@ -43,7 +43,7 @@ export const TypographyComponent = (): TypographyOptions => ({
   body1: {
     lineHeight: '25px',
     fontSize: 16,
-    color: TEXT_COLOR.secondary,
+    color: TEXT_COLOR.primary,
   },
 
   body2: {

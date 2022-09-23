@@ -1,3 +1,6 @@
 export { SuspenseUI } from './Suspense'
 export * from './FormElemnts'
 export { DropzoneUI } from './Dropzone'
+export { TabUI } from './Tab'
+export { TextEditorUI } from './TextEditor'
+export { DialogUI } from './Dialog'
