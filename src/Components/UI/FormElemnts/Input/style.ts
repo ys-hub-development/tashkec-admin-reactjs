@@ -10,7 +10,6 @@ export const StyledInputElement = styled('input')(({ theme }) => ({
   lineHeight: '20px',
   borderRadius: '10px',
   appearance: 'none',
-  backgroundColor: theme.palette.background.paper,
   padding: '13px 16px',
   display: 'block',
   outline: 'none',
@@ -26,6 +25,7 @@ export const InputRoot = styled(InputUnstyled)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',
+  borderColor: 'rgba(137, 146, 169, 0.2)',
 
   '&.Mui-focused .MuiInput-input': {
     borderColor: theme.palette.primary.main,

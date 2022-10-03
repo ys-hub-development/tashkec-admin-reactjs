@@ -39,6 +39,23 @@ export const theme = createTheme({
         },
       },
     },
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        root: {
+          '.MuiPaper-root': {
+            boxShadow: '0 4px 64px rgba(0, 0, 0, 0.08)',
+            backgroundColor: '#fff',
+          },
+        },
+      },
+    },
   },
   typography: TypographyComponent(),
 })

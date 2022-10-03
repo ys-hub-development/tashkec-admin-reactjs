@@ -1,41 +1,40 @@
 import { Grid } from '@mui/material'
 import { PictureItem } from 'Views/Home/Molecules'
 import { DropzoneUI } from 'Components/UI'
-import { useContext, useMemo } from 'react'
+import { useContext } from 'react'
 import { PictureContext } from 'Views/Home/Context/PictureContext'
+import { useLogo } from 'Hooks/Home/useLogo'
 
-const numbers: number[] = [ 1, 2, 3, 4, 5 ]
 
-export const MainPicture = () => {
+export const LogoList = () => {
   const { onRemoveLocalFile, onChange, files, type, onRemove } = useContext(PictureContext)
-  const ext = useMemo(() => type === 'banner' ? 'jpg' : 'png', [ type ])
-  const isBanner = useMemo(() => type === 'banner', [ type ])
-  const isLogo = useMemo(() => type === 'logo', [ type ])
+  const { listQuery: { data } } = useLogo({ initList: true })
 
   return (
     <Grid container spacing={3}>
       {
-        numbers.map(item => (
-          <Grid key={item} item xs={isBanner ? 6 : 3} xl={isLogo ? 2 : 3}>
+        data && data.map((item) => (
+          <Grid key={item.id} item xs={3} xl={2}>
             <PictureItem
+              id={item.id}
+              url={item.path}
               className={type}
-              url={`/media/images/${type}/${type}-${item}.${ext}`}
-              onRemove={onRemove} id={item}
+              onRemove={onRemove}
             />
           </Grid>
         ))
       }
       {
         files.map((item, idx) => (
-          <Grid key={idx + 1} item xs={isBanner ? 6 : 3} xl={isLogo ? 2 : 3}>
+          <Grid key={idx + 1} item xs={3} xl={2}>
             <PictureItem className={type} url={item.url} id={item.id} onRemove={onRemoveLocalFile} />
           </Grid>
         ))
       }
-      <Grid item xs={isBanner ? 6 : 3} xl={isLogo ? 2 : 3}>
+      <Grid item xs={3} xl={2} minHeight={256}>
         <DropzoneUI
-          onChange={onChange}
           multiple={false}
+          onChange={onChange}
           accept={{ 'image/jpeg': [], 'image/jpg': [], 'image/png': [] }}
         />
       </Grid>

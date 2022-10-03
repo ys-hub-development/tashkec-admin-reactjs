@@ -25,7 +25,6 @@ export function useLayoutHeading() {
           contentHeading: parent?.children?.find(item => item.path === arr[2])?.title || '',
         }
       }
-
     }
     return {
       headerHeading: '',

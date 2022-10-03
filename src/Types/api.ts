@@ -1,4 +1,10 @@
 export type QueryParams = {
-  limit: number
-  offset: number
+  page: number
+  size: number
+}
+
+export type Response<D> = {
+  message: string,
+  object:D,
+  success: boolean
 }

@@ -1,13 +1,16 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
+// export const DilyorApiService= 'http://192.168.112:8080'
+// export const BoburApiService= 'http://192.168.106:8080'
+const herokuApiService = 'https://tashkec.herokuapp.com/'
+
 const httpClient = axios.create({
-  baseURL: 'http://192.168.0.106:8080',
+  baseURL: herokuApiService,
   headers: {
     'Content-Type': 'application/json',
   }
 })
-
 
 httpClient.interceptors.response.use(
   (response) => response,
@@ -16,7 +19,6 @@ httpClient.interceptors.response.use(
       const { response: { status } } = error
       if (status === 401) {
         Cookies.remove('token')
-        Cookies.remove('refresh-token')
         window.location.replace('/sign-in')
       } else if (status === 400) {
         return Promise.reject(error)

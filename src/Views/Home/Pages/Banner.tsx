@@ -1,13 +1,13 @@
-import { Button, Grid } from '@mui/material'
+import { Button, CircularProgress, Grid } from '@mui/material'
 import { APP } from 'Constants/App'
 import { useMainPicture } from '../Hooks'
 import { PictureContext } from 'Views/Home/Context/PictureContext'
-import { MainPicture } from 'Views/Home/Organisms'
+import { BannerList } from 'Views/Home/Organisms'
 import { SectionHeading } from 'Components/SectionHeading'
 
 const BannerPage = () => {
   const hook = useMainPicture({ type: 'banner' })
-  const { files } = hook
+  const { files, onSave, isCreateIsLoading } = hook
 
   return (
     <PictureContext.Provider value={{ ...hook }}>
@@ -16,10 +16,16 @@ const BannerPage = () => {
           <SectionHeading />
         </Grid>
         <Grid item xs={12}>
-          <MainPicture />
+          <BannerList />
         </Grid>
         <Grid item xs={12}>
-          <Button disabled={files.length === 0} size='large' fullWidth>
+          <Button
+            fullWidth
+            size='large'
+            onClick={onSave}
+            disabled={files.length === 0 || isCreateIsLoading}
+            startIcon={isCreateIsLoading && <CircularProgress size={20} color='inherit' />}
+          >
             {APP.PUBLISH}
           </Button>
         </Grid>

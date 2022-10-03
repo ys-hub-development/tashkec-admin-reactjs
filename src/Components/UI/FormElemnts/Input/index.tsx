@@ -30,16 +30,21 @@ export const InputUI = forwardRef(function CustomInput(
     if (type === 'password') {
       return (
         <EndAdornmentWrapper>
-          <Box
-            sx={{ cursor: 'pointer' }}
-            onClick={() => setPasswordVisible(!passwordVisible)}
-          >
-            {
-              passwordVisible
-                ? <VisibilityOffIcon />
-                : <VisibilityIcon />
-            }
-          </Box>
+          {
+            props.endAdornment || (
+              <Box
+                sx={{ cursor: 'pointer' }}
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              >
+                {
+                  passwordVisible
+                    ? <VisibilityOffIcon />
+                    : <VisibilityIcon />
+                }
+              </Box>
+            )
+          }
+
         </EndAdornmentWrapper>
       )
     }

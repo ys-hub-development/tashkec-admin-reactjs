@@ -2,7 +2,7 @@ import { Box, Grid, Tab, Tabs } from '@mui/material'
 import { ReactNode, useMemo } from 'react'
 import { formLangTab } from 'Data/app'
 
-export type TabListType = {
+type TabListType = {
   id: string,
   label: string,
 }

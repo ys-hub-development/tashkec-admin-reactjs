@@ -1,6 +1,7 @@
 import { styled } from '@mui/material'
 
 export const EditorWrapper = styled('div')(({ theme }) => ({
+  position: 'relative',
   '&.error': {
     '.jodit-container:not(.jodit_inline)': {
       borderColor: theme.palette.error.main,
@@ -12,7 +13,7 @@ export const EditorWrapper = styled('div')(({ theme }) => ({
   },
 
   '.jodit-container:not(.jodit_inline)': {
-    borderColor: theme.palette.text.secondary,
+    borderColor: '1px solid rgba(137, 146, 169, 0.2)',
     borderRadius: 10,
     overflow: 'hidden',
   },
@@ -29,7 +30,7 @@ export const EditorWrapper = styled('div')(({ theme }) => ({
 
   '.jodit-ui-separator': {
     height: 24,
-    borderColor: theme.palette.text.secondary,
+    borderColor: 'rgba(137, 146, 169, 0.2)',
   },
 
   '.jodit-ui-group': {

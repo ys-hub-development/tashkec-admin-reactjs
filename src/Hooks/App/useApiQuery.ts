@@ -3,17 +3,26 @@ import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import httpClient from 'Service'
 import { AxiosRequestHeaders, AxiosResponse } from 'axios'
 import { queryClient } from 'index'
+import { QueryParams } from 'Types/api'
 
-export type ApiQueryArgs<Response, Params, Error> = {
+export type ApiQueryArgs<Response, Error> = {
   key: string
   url: string;
-  options?: Omit<UseQueryOptions<AxiosResponse<Response, Error>, (string | Params)[]>, 'queryKey' | 'queryFn'>;
+  options?: Omit<UseQueryOptions<AxiosResponse<Response, Error>, (string | QueryParams)[]>, 'queryKey' | 'queryFn'>;
   headers?: AxiosRequestHeaders;
-  params?: Params;
+  params?: QueryParams;
   useCache?: boolean;
 };
 
-export function useApiQuery<R, P, E>({ url, options, params, headers, useCache, key }: ApiQueryArgs<R, P, E>) {
+export function useApiQuery<R, E = any>(
+  {
+    url,
+    options,
+    params,
+    headers,
+    useCache,
+    key,
+  }: ApiQueryArgs<R, E>) {
   const queryKey = useMemo(() => {
     const keys: string[] = [ key ]
     if (params) {

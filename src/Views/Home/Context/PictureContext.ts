@@ -7,7 +7,11 @@ function noop(): any {}
 export const PictureContext = createContext<PictureContextType>({
   files: [],
   type: 'banner',
+  isCreateIsLoading: false,
+  onSave: noop,
   onChange: noop,
   onRemove: noop,
+  getLogoLoading: noop,
   onRemoveLocalFile: noop,
+  getBannerRemoveLoading: noop,
 })

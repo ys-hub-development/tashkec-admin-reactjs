@@ -14,7 +14,7 @@ export const DialogUI = () => {
             onClose={() => updateDialogEvent(null)}
             {...dialog?.props}
           >
-            <DialogTitle sx={{ textAlign: 'center', fontSize: 18, fontWeight: 600, position: 'relative' }}>
+            <DialogTitle sx={{ fontSize: 18, fontWeight: 600, position: 'relative' }} marginBottom={2}>
               {dialog?.title || ''}
               <div className='close-dialog' onClick={() => updateDialogEvent(null)}>
                 <ClearIcon />

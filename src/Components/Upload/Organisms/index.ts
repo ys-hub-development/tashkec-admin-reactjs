@@ -1,0 +1,1 @@
+export { SimpleUpload } from './SimpleUpload'

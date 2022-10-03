@@ -28,9 +28,9 @@ export const EndAdornmentWrapper = styled('div')(({theme}) => ({
 export const InputHelperText = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: '100%',
-  left: 14,
+  left: 0,
   lineHeight: '22px',
-  fontSize: 13,
+  fontSize: 12,
   visibility: 'hidden',
   color: theme.palette.text.secondary,
   zIndex: -1,

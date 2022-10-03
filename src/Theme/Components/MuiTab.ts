@@ -1,4 +1,5 @@
 import { Components } from '@mui/material'
+import { ERROR_COLOR } from 'Constants/Colors'
 
 export const MuiTabComponent = (): Components['MuiTab'] => ({
   defaultProps: {
@@ -12,6 +13,10 @@ export const MuiTabComponent = (): Components['MuiTab'] => ({
       minHeight: 'unset',
       fontSize: 16,
       fontWeight: 700,
+
+      '&.error': {
+        color: ERROR_COLOR.main
+      }
     },
   },
 })

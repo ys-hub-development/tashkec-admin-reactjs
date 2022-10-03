@@ -1,6 +1,6 @@
 import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
-import { BannerPage, LogoPage } from 'Views/Home'
+import { BannerPage, LogoPage, PopupPage } from 'Views/Home'
 
 export const mainRoutes = {
   path: '',
@@ -16,6 +16,10 @@ export const mainRoutes = {
         {
           path: 'logo',
           element: <SuspenseUI><LogoPage /></SuspenseUI>,
+        },
+        {
+          path: 'popup',
+          element: <SuspenseUI><PopupPage /></SuspenseUI>,
         },
       ],
     },

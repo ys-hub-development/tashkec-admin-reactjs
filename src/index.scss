@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import '~react-toastify/dist/ReactToastify.css';
 
 :root {
   --primary: #6792F1;
   --primary-light: rgba(32, 99, 245, 0.1);
-  --danger: #FF7F51;
-  --danger-light: rgba(255, 120, 72, 0.1);
+  --secondary: #FF7F51;
+  --secondary-light: rgba(255, 120, 72, 0.1);
   --light-white: #F7F7F7;
   --grey: #8992A9;
   --violet: #615EBB;
@@ -17,6 +18,8 @@
   --logo-color: #0C1F56;
   --profile-color: #2563EB;
   --border-radius: 10px;
+  --danger: #EF4444;
+  --danger-light: rgba(255, 59, 59, 0.14);
 }
 
 body {
@@ -27,20 +30,82 @@ body {
   min-height: 100vh;
 }
 
- a {
-   text-decoration: unset;
- }
+a {
+  text-decoration: unset;
+}
 
- .html-editor-content {
-   p {
-     margin-top: 0;
-   }
- }
+.html-editor-content {
+  p {
+    margin-top: 0;
+  }
+}
 
- .line-clamp-2 {
-   display: -webkit-box;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   -webkit-line-clamp: 2;
-   -webkit-box-orient: vertical;
- }
+.line-clamp-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: justify;
+  padding: 3.5px 11px;
+  border-radius: 4px;
+}
+
+.badge-primary {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.badge-danger {
+  color: var(--danger);
+  background-color: var(--danger-light);
+}
+
+.Toastify__toast {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+  border-radius: 12px;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  background: #048848;
+}
+
+.Toastify__toast--warning {
+  background: #FFC043;
+
+
+  .Toastify__toast-body,
+  .Toastify__close-button {
+    color: #000000;
+  }
+}
+
+.Toastify__toast--error {
+  background: #E11900;
+}
+
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info,
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--success,
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning,
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--error {
+  background: rgba(0,0,0,.3);
+}
+
+.close-dialog {
+  position: absolute;
+  right: 12px;
+  top: 18px;
+  cursor: pointer;
+  color: var(--dwed-grey);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

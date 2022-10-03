@@ -1,6 +1,15 @@
 import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
-import { GreetingPage, HistoryPage, StructurePage } from 'Views/About'
+import {
+  ContactInfoPage,
+  GreetingPage,
+  HistoryAddPage,
+  HistoryPage,
+  StructurePage,
+  WorkPlanAddPage,
+  WorkPlanEditPage,
+  WorkPlanPage,
+} from 'Views/About'
 
 export const aboutRoutes = {
   path: '',
@@ -18,8 +27,42 @@ export const aboutRoutes = {
           element: <SuspenseUI><StructurePage /></SuspenseUI>,
         },
         {
+          path: 'contacts',
+          element: <SuspenseUI><ContactInfoPage /></SuspenseUI>,
+        },
+        {
           path: 'history',
-          element: <SuspenseUI><HistoryPage /></SuspenseUI>,
+          children: [
+            {
+              path: '',
+              element: <SuspenseUI><HistoryPage /></SuspenseUI>,
+            },
+            {
+              path: 'add',
+              element: <SuspenseUI><HistoryAddPage /></SuspenseUI>,
+            },
+            {
+              path: 'edit/:historyId',
+              element: <SuspenseUI><HistoryAddPage /></SuspenseUI>,
+            },
+          ],
+        },
+        {
+          path: 'plan',
+          children: [
+            {
+              path: '',
+              element: <SuspenseUI><WorkPlanPage /></SuspenseUI>,
+            },
+            {
+              path: 'add',
+              element: <SuspenseUI><WorkPlanAddPage /></SuspenseUI>,
+            },
+            {
+              path: 'edit/:planId',
+              element: <SuspenseUI><WorkPlanEditPage /></SuspenseUI>,
+            },
+          ],
         },
       ],
     },

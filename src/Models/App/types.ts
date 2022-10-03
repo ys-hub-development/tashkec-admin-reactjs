@@ -19,7 +19,7 @@ export type Dialog = {
   title?: string
   content: string | ReactNode | null
   agreeAction?: () => void
-  props?: DialogProps
+  props?: Omit<DialogProps, 'open'>
 }
 
 export type Drawer =  {

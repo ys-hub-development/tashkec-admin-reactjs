@@ -1,8 +1,12 @@
-import { useApiQuery } from 'Hooks/App/useApiQuery'
+import { useStore } from 'effector-react'
+import { $AppStore, fetchAccountMe } from 'Models'
+import { useEffect } from 'react'
 
 export function useAccountMe() {
-  return useApiQuery({
-    url: '/account/me',
-    key: 'account',
-  })
+  const { isAuthenticated } = useStore($AppStore)
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchAccountMe()
+    }
+  }, [ isAuthenticated ])
 }

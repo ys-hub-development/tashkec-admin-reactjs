@@ -1,2 +1,5 @@
 export * from './App'
 export * from './Account'
+export * from './Home'
+export * from './User'
+export * from './About'

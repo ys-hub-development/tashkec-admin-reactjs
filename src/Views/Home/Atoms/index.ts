@@ -2,6 +2,12 @@ import { Stack, styled } from '@mui/material'
 
 export const PictureBox = styled(Stack)(({ theme }) => ({
 
+  '&.uploading': {
+    '.img-box': {
+      opacity: .5,
+    },
+  },
+
   '.img-box': {
     display: 'flex',
     flexDirection: 'column',
@@ -12,7 +18,9 @@ export const PictureBox = styled(Stack)(({ theme }) => ({
 
   '&.banner': {
     '.img-box': {
-      height: 200
+      overflow: 'hidden',
+      borderRadius: 18,
+      height: 200,
     },
 
     img: {

@@ -1,2 +1,5 @@
 export { useGreetingForm } from './useGreetingForm'
-export { useStructureForm } from './useStructureForm'
+export { useCenterStructureForm } from './useCenterStructureForm'
+export { useCenterHistoryForm } from './useCenterHistoryForm'
+export { useWorkPlanForm } from './useWorkPlanForm'
+export { useContactForm } from './useContactForm'

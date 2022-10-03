@@ -1,5 +1,4 @@
 import { StructureForm } from 'Views/About/Organisms'
-import { FormLangTab } from 'Components/Tabs'
 import { SectionHeading } from 'Components/SectionHeading'
 import { Grid } from '@mui/material'
 
@@ -10,7 +9,7 @@ const StructurePage = () => {
         <SectionHeading />
       </Grid>
       <Grid item xs={12}>
-        <FormLangTab render={(lang) => <StructureForm lang={lang} />} />
+        <StructureForm />
       </Grid>
     </Grid>
   )

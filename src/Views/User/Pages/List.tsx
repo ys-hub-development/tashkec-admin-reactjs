@@ -2,17 +2,21 @@ import { Grid } from '@mui/material'
 import { SectionHeading } from 'Components/SectionHeading'
 import { useCallback } from 'react'
 import { UserList } from 'Views/User/Organisms'
+import { useNavigate } from 'react-router-dom'
+import { CommonPath, UserPath } from 'Constants/Navigation'
+import { APP } from 'Constants/App'
 
-const UserListPage = () => {
+export default () => {
+  const navigate = useNavigate()
 
   const onAdd = useCallback(() => {
-    console.log('add')
-  }, [])
+    navigate(`/${UserPath.main}/${CommonPath.add}`)
+  }, [navigate])
 
   return (
     <Grid container rowSpacing={4}>
       <Grid item xs={12}>
-        <SectionHeading onAdd={onAdd} />
+        <SectionHeading onAdd={onAdd} addTitle={APP.ADD_USER} />
       </Grid>
       <Grid item xs={12}>
         <UserList />
@@ -20,5 +24,3 @@ const UserListPage = () => {
     </Grid>
   )
 }
-
-export default UserListPage

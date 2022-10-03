@@ -1,9 +1,14 @@
-import { TabListType } from 'Components/UI/Tab'
+import { LangType } from 'Types/app'
 
-export const formLangTab: TabListType[] = [
-  { label: 'Русский', id: 'ru' },
-  { label: 'Uzbek', id: 'uz' },
-  { label: '한국어', id: 'ko' },
+export type LangTabListType = {
+  id: LangType,
+  label: string,
+}
+
+export const formLangTab: LangTabListType[] = [
+  { label: 'Русский', id: 'Ru' },
+  { label: 'Uzbek', id: 'Uz' },
+  { label: '한국어', id: 'Kr' },
 ]
 
 export const fakeHistoryList = [

@@ -23,9 +23,11 @@ export const ProfileMenu = () => {
       queryClient.clear()
       navigate('/sign-in')
       Cookies.remove('token')
+      localStorage.removeItem('user')
       getAppAuthStatus(false)
     } else {
       navigate('/profile')
+      setAnchorEl(null)
     }
   }
 
@@ -50,6 +52,7 @@ export const ProfileMenu = () => {
         MenuListProps={{ 'aria-labelledby': 'profile-menu' }}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+        BackdropProps={{ style: { background: 'unset' } }}
       >
         <MenuItem onClick={() => handleClose()}>{APP.MY_PROFILE}</MenuItem>
         <MenuItem onClick={() => handleClose(true)}>

@@ -1,20 +1,23 @@
 import {
-  MainPath,
-  NewsPath,
   AboutPath,
+  AboutPathTitle,
+  CommonPath,
+  FaqPath,
+  FaqPathTitle,
   GalleryPath,
-  MaterialPath,
+  GalleryPathTitle,
+  InstitutionPath,
+  InstitutionPathTitle,
+  MainPath,
   MainPathTitle,
+  MaterialPath,
+  MaterialPathTitle,
+  NewsPath,
   NewsPathTitle,
   SchedulerPath,
-  AboutPathTitle,
-  InstitutionPath,
-  GalleryPathTitle,
-  MaterialPathTitle,
-  SchedulerPathTitle,
-  InstitutionPathTitle,
-  FaqPathTitle,
-  FaqPath, UserPathTitle, UserPath, CommonPathTitle, CommonPath,
+  SchedulerPathTitle, SettingsPath, SettingsPathTitle,
+  UserPath,
+  UserPathTitle,
 } from 'Constants/Navigation'
 
 export type AppNavigationBasic = {
@@ -34,6 +37,7 @@ export const appPublicNavigation: AppNavigation[] = [
     children: [
       { title: MainPathTitle.banner, path: MainPath.banner },
       { title: MainPathTitle.logo, path: MainPath.logo },
+      { title: MainPathTitle.popup, path: MainPath.popup },
     ],
   },
   {
@@ -81,29 +85,41 @@ export const appPublicNavigation: AppNavigation[] = [
     path: GalleryPath.main,
   },
   {
+    title: SettingsPathTitle.profile,
+    path: SettingsPath.profile,
+    hidden: true,
+    children: [
+      {
+        title: SettingsPathTitle.settings,
+        path: SettingsPath.settings,
+        hidden: true
+      }
+    ]
+  },
+  {
     title: 'UIKit',
     path: 'uikit',
     hidden: true,
   },
 ]
 
-export const appAdminNavigation:AppNavigation[] = [
+export const appAdminNavigation: AppNavigation[] = [
   {
     title: UserPathTitle.main,
     path: UserPath.main,
     children: [
       {
-        title: CommonPathTitle.add,
+        title: UserPathTitle.add,
         path: CommonPath.add,
         hidden: true,
       },
       {
-        title: CommonPathTitle.edit,
-        path: `${CommonPath.edit}/:userId`,
+        title: UserPathTitle.edit,
+        path: `${CommonPath.edit}`,
         hidden: true,
-      }
-    ]
+      },
+    ],
   },
 ]
 
-export const appNavigation = [...appPublicNavigation, ...appAdminNavigation]
+export const appNavigation = [ ...appPublicNavigation, ...appAdminNavigation ]

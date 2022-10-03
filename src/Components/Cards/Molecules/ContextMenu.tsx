@@ -44,13 +44,24 @@ export const ContextMenu = ({ id, onRemove, onEdit }: Props) => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem onClick={() => onEdit(id)}>
+        <MenuItem
+          onClick={() => {
+            onEdit(id)
+            setAnchorEl(null)
+          }}
+        >
           <Stack direction='row' color='primary.main' spacing={1} alignItems='center'>
             <EditPencilIcon />
             <Typography variant='body2' color='primary.main'>{APP.CHANGE}</Typography>
           </Stack>
         </MenuItem>
-        <MenuItem onClick={() => onRemove(id)} color={ERROR_COLOR.main}>
+        <MenuItem
+          onClick={() => {
+            onRemove(id)
+            setAnchorEl(null)
+          }}
+          color={ERROR_COLOR.main}
+        >
           <Stack direction='row' color='secondary.main' spacing={1} alignItems='center'>
             <TrashIcon />
             <Typography variant='body2' color='secondary.main'>{APP.REMOVE}</Typography>
