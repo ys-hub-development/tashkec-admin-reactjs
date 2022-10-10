@@ -8,14 +8,18 @@ export type FormProps = {
 }
 
 export type TableColumnType = {
-  title: string | ReactNode,
-  gridSize?: boolean | GridSize;
+  title: string | ReactNode
+  gridSize?: boolean | GridSize
 }
 
 export interface IParams extends Record<string, string | undefined> {
   userId: string
   historyId: string
   planId: string
+  eventId: string
+  newsId: string
+  studyId: string
+  institutionId: string
 }
 
 export type ListHook = {
@@ -42,6 +46,7 @@ export type CrudServiceProps = {
   enabled: boolean
   detailId?: string
   axiosParam?: AxiosRequestConfig
+  extraId?: string
 }
 
 export type CRUDApi<D> = ApiAction & {
@@ -49,7 +54,7 @@ export type CRUDApi<D> = ApiAction & {
   id?: string
 }
 
-export type ControllerHookProps = Pick<CrudServiceProps, 'initList' | 'detailId'>
+export type ControllerHookProps = Pick<CrudServiceProps, 'initList' | 'detailId' | 'extraId'>
 
 export type LangType = 'Kr' | 'Uz' | 'Ru'
 

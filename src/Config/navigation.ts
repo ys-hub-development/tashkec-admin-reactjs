@@ -15,7 +15,9 @@ import {
   NewsPath,
   NewsPathTitle,
   SchedulerPath,
-  SchedulerPathTitle, SettingsPath, SettingsPathTitle,
+  SchedulerPathTitle,
+  SettingsPath,
+  SettingsPathTitle,
   UserPath,
   UserPathTitle,
 } from 'Constants/Navigation'
@@ -57,7 +59,7 @@ export const appPublicNavigation: AppNavigation[] = [
     children: [
       { title: NewsPathTitle['center-news'], path: NewsPath['center-news'] },
       { title: NewsPathTitle['center-events'], path: NewsPath['center-events'] },
-      { title: NewsPathTitle.edu, path: NewsPath.edu },
+      { title: NewsPathTitle['study-in-korea'], path: NewsPath['study-in-korea'] },
     ],
   },
   {
@@ -75,6 +77,12 @@ export const appPublicNavigation: AppNavigation[] = [
   {
     title: InstitutionPathTitle.main,
     path: InstitutionPath.main,
+    children: [
+      { title: InstitutionPathTitle['college-lyceum'], path: InstitutionPath['college-lyceum'] },
+      { title: InstitutionPathTitle['korean-university'], path: InstitutionPath['korean-university'] },
+      { title: InstitutionPathTitle['uzbekistan-university'], path: InstitutionPath['uzbekistan-university'] },
+      { title: InstitutionPathTitle.school, path: InstitutionPath.school },
+    ],
   },
   {
     title: FaqPathTitle.main,
@@ -92,9 +100,9 @@ export const appPublicNavigation: AppNavigation[] = [
       {
         title: SettingsPathTitle.settings,
         path: SettingsPath.settings,
-        hidden: true
-      }
-    ]
+        hidden: true,
+      },
+    ],
   },
   {
     title: 'UIKit',
@@ -122,4 +130,4 @@ export const appAdminNavigation: AppNavigation[] = [
   },
 ]
 
-export const appNavigation = [ ...appPublicNavigation, ...appAdminNavigation ]
+export const appNavigation = [...appPublicNavigation, ...appAdminNavigation]

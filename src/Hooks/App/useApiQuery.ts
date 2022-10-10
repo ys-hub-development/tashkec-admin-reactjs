@@ -10,7 +10,7 @@ export type ApiQueryArgs<Response, Error> = {
   url: string;
   options?: Omit<UseQueryOptions<AxiosResponse<Response, Error>, (string | QueryParams)[]>, 'queryKey' | 'queryFn'>;
   headers?: AxiosRequestHeaders;
-  params?: QueryParams;
+  params?: Omit<QueryParams, 'page' | 'size'>;
   useCache?: boolean;
 };
 

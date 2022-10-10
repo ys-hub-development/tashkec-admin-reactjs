@@ -1,5 +1,6 @@
 import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
+import { SchedulerPath } from 'Constants/Navigation'
 import {
   ContactInfoPage,
   GreetingPage,
@@ -10,6 +11,7 @@ import {
   WorkPlanEditPage,
   WorkPlanPage,
 } from 'Views/About'
+import { TimeTablePage } from 'Views/TimeTable'
 
 export const aboutRoutes = {
   path: '',
@@ -20,30 +22,54 @@ export const aboutRoutes = {
       children: [
         {
           path: 'greeting',
-          element: <SuspenseUI><GreetingPage /></SuspenseUI>,
+          element: (
+            <SuspenseUI>
+              <GreetingPage />
+            </SuspenseUI>
+          ),
         },
         {
           path: 'structure',
-          element: <SuspenseUI><StructurePage /></SuspenseUI>,
+          element: (
+            <SuspenseUI>
+              <StructurePage />
+            </SuspenseUI>
+          ),
         },
         {
           path: 'contacts',
-          element: <SuspenseUI><ContactInfoPage /></SuspenseUI>,
+          element: (
+            <SuspenseUI>
+              <ContactInfoPage />
+            </SuspenseUI>
+          ),
         },
         {
           path: 'history',
           children: [
             {
               path: '',
-              element: <SuspenseUI><HistoryPage /></SuspenseUI>,
+              element: (
+                <SuspenseUI>
+                  <HistoryPage />
+                </SuspenseUI>
+              ),
             },
             {
               path: 'add',
-              element: <SuspenseUI><HistoryAddPage /></SuspenseUI>,
+              element: (
+                <SuspenseUI>
+                  <HistoryAddPage />
+                </SuspenseUI>
+              ),
             },
             {
               path: 'edit/:historyId',
-              element: <SuspenseUI><HistoryAddPage /></SuspenseUI>,
+              element: (
+                <SuspenseUI>
+                  <HistoryAddPage />
+                </SuspenseUI>
+              ),
             },
           ],
         },
@@ -52,15 +78,27 @@ export const aboutRoutes = {
           children: [
             {
               path: '',
-              element: <SuspenseUI><WorkPlanPage /></SuspenseUI>,
+              element: (
+                <SuspenseUI>
+                  <WorkPlanPage />
+                </SuspenseUI>
+              ),
             },
             {
               path: 'add',
-              element: <SuspenseUI><WorkPlanAddPage /></SuspenseUI>,
+              element: (
+                <SuspenseUI>
+                  <WorkPlanAddPage />
+                </SuspenseUI>
+              ),
             },
             {
               path: 'edit/:planId',
-              element: <SuspenseUI><WorkPlanEditPage /></SuspenseUI>,
+              element: (
+                <SuspenseUI>
+                  <WorkPlanEditPage />
+                </SuspenseUI>
+              ),
             },
           ],
         },

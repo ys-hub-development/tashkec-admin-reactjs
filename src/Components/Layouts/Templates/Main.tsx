@@ -3,7 +3,11 @@ import { Content, Header, Sidebar } from 'Components/Layouts/Organisms'
 import { useStore } from 'effector-react'
 import { $AppStore } from 'Models'
 
-export const MainLayout = () => {
+type Props = {
+  noWrapper?: boolean
+}
+
+export const MainLayout = ({ noWrapper }: Props) => {
   const { isAuthenticated } = useStore($AppStore)
 
   if (!isAuthenticated) {
@@ -14,7 +18,7 @@ export const MainLayout = () => {
     <>
       <Header />
       <Sidebar />
-      <Content>
+      <Content noWrapper={noWrapper}>
         <Outlet />
       </Content>
     </>

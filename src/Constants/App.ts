@@ -60,6 +60,26 @@ export const APP = {
   PLAN: 'План',
   ADD_POPUP: 'Добавить поп-ап',
   VIDEO: 'Видео',
-  VIDEO_URL: 'Видео URL'
+  VIDEO_URL: 'Видео URL',
+  ADD_NEWS: 'Добавить новости',
+  EDIT_NEWS: 'Изменить новости',
+  REMOVE_CONFIRMATION: 'Вы действительно хотите удалить?',
+  CONFIRM: 'Подтвердить',
+  ADD_EVENT: 'Добавить собития',
+  ADD_STUDY_IN_KOREA: 'Добавить учеба в Корее',
+  EDIT_STUDY_IN_KOREA: 'Изменить учеба в Корее',
+  FILES: 'Файлы',
+  DOCUMENT: 'Документ',
+  ADD_DOCUMENT: 'Добавить документ',
+  EDIT_DOCUMENT: 'Изменить документ',
+  ADD_INSTITUTION: 'Добавить учреждение',
+  EDIT_INSTITUTION: 'Изменить учреждение',
+  ADD_COLLEGE_LYCEUM: 'Добавить Колледжи / Лицеи',
+  EDIT_COLLEGE_LYCEUM: 'Изменить Колледжи / Лицеи',
+  ADD_KOREAN_UNIVERSITY: 'Добавить Университеты Кореи',
+  EDIT_KOREAN_UNIVERSITY: 'Изменить Университеты Кореи',
+  ADD_UZBEKISTAN_UNIVERSITY: 'Добавить Университеты Узбекистан',
+  EDIT_UZBEKISTAN_UNIVERSITY: 'Изменить Университеты Узбекистан',
+  ADD_SCHOOL: 'Добавить Школу',
+  EDIT_SCHOOL: 'Изменить Школу'
 }
-

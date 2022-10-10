@@ -8,22 +8,22 @@ import httpClient from 'Service'
 import { toast } from 'react-toastify'
 import { APP } from 'Constants/App'
 
-export function useCRUDApi<ListModel, Model, Data>(
-  {
-    key,
-    url,
-    useDefaultQuery,
-    params,
-    enabled,
-    detailId,
-    initList,
-    axiosParam,
-  }: CrudServiceProps) {
-  const [ query, setQuery ] = useState<QueryParams | undefined>(undefined)
+export function useCRUDApi<ListModel, Model, Data>({
+  key,
+  url,
+  useDefaultQuery,
+  params,
+  enabled,
+  detailId,
+  initList,
+  axiosParam,
+  extraId,
+}: CrudServiceProps) {
+  const [query, setQuery] = useState<QueryParams | undefined>(undefined)
   const p = useListQueryParams({ limit: 10 })
 
   const listQuery = useApiQuery<ListModel>({
-    url,
+    url: extraId ? `${url}/${extraId}` : url,
     key,
     params: query,
     options: { enabled: !!query && enabled && initList },
@@ -104,7 +104,7 @@ export function useCRUDApi<ListModel, Model, Data>(
     return () => {
       clearTimeout(timeout)
     }
-  }, [ p, useDefaultQuery, params ])
+  }, [p, useDefaultQuery, params])
 
   return {
     listQuery,
