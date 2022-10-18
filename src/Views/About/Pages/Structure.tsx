@@ -1,5 +1,5 @@
 import { StructureForm } from 'Views/About/Organisms'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { Grid } from '@mui/material'
 
 const StructurePage = () => {

@@ -8,7 +8,7 @@ import { Fragment } from 'react'
 import { Controller } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IParams } from 'Types/app'
-import { useEventForm } from '../Hooks/useEventForm'
+import { useEventForm } from 'Views/News/Hooks'
 
 export const EventForm = () => {
   const { eventId } = useParams<IParams>()

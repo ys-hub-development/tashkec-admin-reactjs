@@ -2,7 +2,7 @@ import ReactPlayer from 'react-player';
 import { Box, Button, CircularProgress, Grid } from '@mui/material'
 import { APP } from 'Constants/App'
 import { TrashIcon } from 'Icons/Trash'
-import { PictureBox } from 'Views/Home/Atoms'
+import { PictureBox } from 'Components/Picture';
 
 type Props = {
   id: number

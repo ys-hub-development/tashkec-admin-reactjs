@@ -1,12 +1,19 @@
 import { usePopup } from 'Hooks'
 import { Grid } from '@mui/material'
-import { PictureItem, PopupForm, PopupVideoItem } from 'Views/Home/Molecules'
-import { useCallback } from 'react'
+import { PopupForm, PopupVideoItem } from 'Views/Home/Molecules'
+import { useCallback, useState } from 'react'
 import { updateDialogEvent } from 'Models'
 import { APP } from 'Constants/App'
+import { ConfirmationDialog } from 'Components/Dialog'
+import { PictureItem } from 'Components/Picture'
+import { SectionLoader } from 'Components/Section'
 
 export const AdvertisingList = () => {
-  const { listQuery: { data, isFetching, refetch }, remove } = usePopup({ initList: true })
+  const [removeId, setRemoveId] = useState<number | null>(null)
+  const {
+    listQuery: { data, isFetching, refetch, isLoading },
+    remove,
+  } = usePopup({ initList: true })
 
   const onOpenDialog = useCallback((id: number) => {
     updateDialogEvent({
@@ -20,35 +27,38 @@ export const AdvertisingList = () => {
     })
   }, [])
 
-  const onRemove = useCallback((id: number) => {
-    remove.mutate({id: String(id), action: () => refetch()})
-  }, [refetch, remove])
+  const onRemove = useCallback(() => {
+    if (removeId) {
+      remove.mutate({ id: String(removeId), action: () => refetch() })
+      setRemoveId(null)
+    }
+  }, [refetch, remove, removeId])
 
-  const getRemoveLoading = useCallback((id: number) => {
-    return remove.variables?.id === String(id) && (remove.isLoading || isFetching)
-  }, [ remove.isLoading, isFetching, remove.variables?.id ])
+  const getRemoveLoading = useCallback(
+    (id: number) => {
+      return remove.variables?.id === String(id) && (remove.isLoading || isFetching)
+    },
+    [remove.isLoading, isFetching, remove.variables?.id],
+  )
 
   return (
-    <Grid container spacing={3}>
-      {
-        data && data.map((item) => (
-          <Grid key={item.id} item xs={6} xl={3}>
-            {
-              item.isImage && item.attachment &&
-              (
-
+    <SectionLoader isFetching={isFetching} isLoading={isLoading}>
+      <ConfirmationDialog open={!!removeId} onClose={() => setRemoveId(null)} onAccept={onRemove} />
+      {!isLoading && data && (
+        <Grid container spacing={3}>
+          {data.map(item => (
+            <Grid key={item.id} item xs={6} xl={3}>
+              {item.isImage && item.attachment && (
                 <PictureItem
                   id={item.id}
                   className='banner'
-                  onRemove={onRemove}
+                  onRemove={setRemoveId}
                   url={item.attachment.path}
                   onEdit={onOpenDialog}
                   isLoading={getRemoveLoading(item.id)}
                 />
-              )
-            }
-            {
-              !item.isImage && item.videoUrl && (
+              )}
+              {!item.isImage && item.videoUrl && (
                 <PopupVideoItem
                   id={item.id}
                   className='banner'
@@ -57,11 +67,11 @@ export const AdvertisingList = () => {
                   onEdit={onOpenDialog}
                   isLoading={getRemoveLoading(item.id)}
                 />
-              )
-            }
-          </Grid>
-        ))
-      }
-    </Grid>
+              )}
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </SectionLoader>
   )
 }

@@ -3,6 +3,7 @@ import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
 import { UniversityAddPage, UniversityEditPage, UniversityPage } from 'Views/University'
 import { EducationTypeEnum } from 'Entities/institution'
+import { Navigate } from 'react-router-dom'
 
 export const institutionRoutes = {
   path: '',
@@ -11,6 +12,10 @@ export const institutionRoutes = {
       path: `/${InstitutionPath.main}`,
       element: <MainLayout />,
       children: [
+        {
+          path: '',
+          element: <Navigate to={`/${InstitutionPath.main}/${InstitutionPath['college-lyceum']}`} />
+        },
         {
           path: InstitutionPath['college-lyceum'],
           children: [

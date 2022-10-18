@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { UniversityForm } from 'Views/University/Organisms'
 import { EducationTypeEnum } from 'Entities/institution'
 import { InstitutionContext } from '../Context'

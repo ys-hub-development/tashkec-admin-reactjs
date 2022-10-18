@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { useStore } from 'effector-react'
 import { $Account } from 'Models'
 import { UserForm } from 'Components/User'

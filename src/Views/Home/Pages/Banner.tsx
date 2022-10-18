@@ -3,7 +3,7 @@ import { APP } from 'Constants/App'
 import { useMainPicture } from '../Hooks'
 import { PictureContext } from 'Views/Home/Context/PictureContext'
 import { BannerList } from 'Views/Home/Organisms'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 
 const BannerPage = () => {
   const hook = useMainPicture({ type: 'banner' })

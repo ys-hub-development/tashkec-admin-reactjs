@@ -9,9 +9,10 @@ type Props = {
   fileName: null | string
   onChange?: (file: null | File) => void
   error?: string
+  accept?: string
 }
 
-export const DocumentUpload = ({ fileName, onChange, error }: Props) => {
+export const DocumentUpload = ({ fileName, onChange, error, accept }: Props) => {
   const ref = useRef<HTMLInputElement>(null)
 
   return (
@@ -53,7 +54,7 @@ export const DocumentUpload = ({ fileName, onChange, error }: Props) => {
       </Stack>
       {onChange && (
         <input
-          accept='application/pdf'
+          accept={accept || 'application/pdf'}
           ref={ref}
           type='file'
           onChange={e => onChange(e.target.files ? e.target.files[0] : null)}

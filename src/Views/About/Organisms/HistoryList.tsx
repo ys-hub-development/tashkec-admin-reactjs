@@ -4,51 +4,74 @@ import { format } from 'date-fns'
 import { useCenterHistory } from 'Hooks'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { URL_KEYS } from 'Constants/Url'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { CenterHistory } from 'Entities/about'
 import { AboutPath } from 'Constants/Navigation'
+import { ConfirmationDialog } from 'Components/Dialog'
+import { PaginationUI } from 'Components/UI'
+import { SectionLoader } from 'Components/Section'
 
 export const HistoryList = () => {
   const navigate = useNavigate()
-  const { listQuery: { data, refetch }, remove } = useCenterHistory({ initList: true })
-  const [ searchParams ] = useSearchParams()
+  const [removeId, setRemoveId] = useState<number | null>(null)
+  const {
+    listQuery: { data, refetch, isLoading, axiosData, isFetching },
+    remove,
+  } = useCenterHistory({ initList: true })
+  const [searchParams] = useSearchParams()
   const _lang = searchParams.get(URL_KEYS.LANG)
 
-  const getTitle = useCallback((item: CenterHistory) => {
-    switch (_lang) {
-      case 'Ru':
-        return item.titleRu
-      case 'Uz':
-        return item.titleUz
-      case 'Kr':
-        return item.titleKr
-      default:
-        return item.titleRu
+  const getTitle = useCallback(
+    (item: CenterHistory) => {
+      switch (_lang) {
+        case 'Ru':
+          return item.titleRu
+        case 'Uz':
+          return item.titleUz
+        case 'Kr':
+          return item.titleKr
+        default:
+          return item.titleRu
+      }
+    },
+    [_lang],
+  )
+
+  const onEdit = useCallback(
+    (id: number) => {
+      navigate(`/${AboutPath.main}/${AboutPath.history}/edit/${id}`)
+    },
+    [navigate],
+  )
+
+  const onRemove = useCallback(() => {
+    if (removeId) {
+      remove.mutate({ id: String(removeId), action: () => refetch() })
+      setRemoveId(null)
     }
-  }, [ _lang ])
-
-  const onEdit = useCallback((id: number) => {
-    navigate(`/${AboutPath.main}/${AboutPath.history}/edit/${id}`)
-  }, [ navigate ])
-
-  const onRemove = useCallback((id: number) => {
-    remove.mutate({ id: String(id), action: () => refetch() })
-  }, [ refetch, remove ])
+  }, [refetch, remove, removeId])
 
   return (
-    <Grid container rowSpacing={2}>
-      {
-        data && data.map(item => (
-          <Grid item key={item.id} xs={12}>
-            <MainCard
-              onEdit={onEdit}
-              onRemove={onRemove}
-              id={item.id} text={getTitle(item)}
-              date={format(new Date(item.publishedDate), 'dd/MM/yyyy')}
-            />
+    <SectionLoader isLoading={isLoading} isFetching={isFetching}>
+      <ConfirmationDialog open={!!removeId} onClose={() => setRemoveId(null)} onAccept={onRemove} />
+      {!isLoading && data && (
+        <>
+          <Grid container rowSpacing={2}>
+            {data.map(item => (
+              <Grid item key={item.id} xs={12}>
+                <MainCard
+                  onEdit={onEdit}
+                  onRemove={setRemoveId}
+                  id={item.id}
+                  text={getTitle(item)}
+                  date={format(new Date(item.publishedDate), 'dd/MM/yyyy')}
+                />
+              </Grid>
+            ))}
           </Grid>
-        ))
-      }
-    </Grid>
+          <PaginationUI length={Number(axiosData?.headers?.['x-total-count']) || 0} />
+        </>
+      )}
+    </SectionLoader>
   )
 }

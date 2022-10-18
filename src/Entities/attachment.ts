@@ -13,6 +13,7 @@ export interface IAttachmentBase {
   fileNameRu: string
   fileNameKr: string
   fileTypeEnum: FileTypeEnum | null
+  mainPhoto: boolean
 }
 
 export interface IAttachment extends IAttachmentBase {

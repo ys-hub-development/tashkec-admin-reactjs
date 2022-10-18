@@ -9,11 +9,14 @@ const httpClient = axios.create({
   baseURL: herokuApiService,
   headers: {
     'Content-Type': 'application/json',
+    'accept':'*/*'
   }
 })
 
 httpClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    return response
+  },
   (error) => {
     if (error && error.response) {
       const { response: { status } } = error

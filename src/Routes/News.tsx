@@ -1,14 +1,8 @@
 import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
 import { CommonPath, NewsPath } from 'Constants/Navigation'
-import { EventListPage, NewsListPage } from 'Views/News'
-import EventAdd from 'Views/News/Pages/EventAdd'
-import EventEdit from 'Views/News/Pages/EventEdit'
-import NewsAdd from 'Views/News/Pages/NewsAdd'
-import NewsEdit from 'Views/News/Pages/NewsEdit'
-import StudyInKorea from 'Views/News/Pages/StudyInKorea'
-import StudyInKoreaAdd from 'Views/News/Pages/StudyInKoreaAdd'
-import StudyInKoreaEdit from 'Views/News/Pages/StudyInKoreaEdit'
+import { EventAddPage, EventEditPage, EventListPage, NewsAddPage, NewsEditPage, NewsListPage } from 'Views/News'
+import { Navigate } from 'react-router-dom'
 
 export const newsRoutes = {
   path: '',
@@ -17,6 +11,10 @@ export const newsRoutes = {
       path: `/${NewsPath.main}`,
       element: <MainLayout />,
       children: [
+        {
+          path: '',
+          element: <Navigate to={`/${NewsPath.main}/${NewsPath['center-news']}`} />,
+        },
         {
           path: NewsPath['center-news'],
           children: [
@@ -32,7 +30,7 @@ export const newsRoutes = {
               path: CommonPath.add,
               element: (
                 <SuspenseUI>
-                  <NewsAdd />
+                  <NewsAddPage />
                 </SuspenseUI>
               ),
             },
@@ -40,7 +38,7 @@ export const newsRoutes = {
               path: `${CommonPath.edit}/:newsId`,
               element: (
                 <SuspenseUI>
-                  <NewsEdit />
+                  <NewsEditPage />
                 </SuspenseUI>
               ),
             },
@@ -67,7 +65,7 @@ export const newsRoutes = {
               path: CommonPath.add,
               element: (
                 <SuspenseUI>
-                  <EventAdd />
+                  <EventAddPage />
                 </SuspenseUI>
               ),
             },
@@ -75,52 +73,11 @@ export const newsRoutes = {
               path: `${CommonPath.edit}/:eventId`,
               element: (
                 <SuspenseUI>
-                  <EventEdit />
+                  <EventEditPage />
                 </SuspenseUI>
               ),
             },
           ],
-        },
-      ],
-    },
-    {
-      path: `/${NewsPath.main}`,
-      element: <MainLayout />,
-      children: [
-        {
-          path: NewsPath['study-in-korea'],
-          children: [
-            {
-              path: '',
-              element: (
-                <SuspenseUI>
-                  <StudyInKorea />
-                </SuspenseUI>
-              ),
-            },
-            {
-              path: CommonPath.add,
-              element: (
-                <SuspenseUI>
-                  <StudyInKoreaAdd />
-                </SuspenseUI>
-              ),
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: `/${NewsPath.main}/${NewsPath['study-in-korea']}/${CommonPath.edit}/:studyId`,
-      element: <MainLayout noWrapper />,
-      children: [
-        {
-          path: '',
-          element: (
-            <SuspenseUI>
-              <StudyInKoreaEdit />
-            </SuspenseUI>
-          ),
         },
       ],
     },

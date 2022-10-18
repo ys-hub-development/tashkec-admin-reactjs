@@ -1,24 +1,26 @@
 import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
-import { BannerPage, LogoPage, PopupPage } from 'Views/Home'
+import { BannerPage, PopupPage } from 'Views/Home'
+import { MainPath } from 'Constants/Navigation'
+import { Navigate } from 'react-router-dom'
 
 export const mainRoutes = {
   path: '',
   children: [
     {
-      path: '/main',
+      path: `/${MainPath.main}`,
       element: <MainLayout />,
       children: [
         {
-          path: 'banner',
+          path: '',
+          element: <Navigate to={`/${MainPath.main}/${MainPath.banner}`} />
+        },
+        {
+          path: MainPath.banner,
           element: <SuspenseUI><BannerPage /></SuspenseUI>,
         },
         {
-          path: 'logo',
-          element: <SuspenseUI><LogoPage /></SuspenseUI>,
-        },
-        {
-          path: 'popup',
+          path: MainPath.popup,
           element: <SuspenseUI><PopupPage /></SuspenseUI>,
         },
       ],

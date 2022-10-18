@@ -28,7 +28,7 @@ export function useMainPicture({ type }: Props) {
       }
     }
 
-    setFiles(tmp)
+    setFiles((f) => [...f, ...tmp])
   }, [])
 
   const onRemoveLocalFile = useCallback((id: number) => {

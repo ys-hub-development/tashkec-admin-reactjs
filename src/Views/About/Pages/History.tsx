@@ -1,5 +1,5 @@
 import { HistoryList } from 'Views/About/Organisms'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { Grid } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { AboutPath, CommonPath } from 'Constants/Navigation'
@@ -13,6 +13,7 @@ const HistoryPage = () => {
         <SectionHeading
           addTitle={APP.ADD_HISTORY}
           onAdd={() => navigate(`/${AboutPath.main}/${AboutPath.history}/${CommonPath.add}`)}
+          langFilter
         />
       </Grid>
       <Grid item xs={12}>

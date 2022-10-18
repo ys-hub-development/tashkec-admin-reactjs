@@ -50,6 +50,7 @@ export const NavItem = styled('div')(({ theme }) => ({
     cursor: 'pointer',
     fontSize: 14,
     position: 'relative',
+    fontWeight: 600,
     lineHeight: '16px',
     borderRadius: 'var(--border-radius)',
   },

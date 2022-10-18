@@ -16,44 +16,26 @@ export const baseRoutes = {
           path: '',
           element: <Navigate to='/main/banner' />,
         },
-      ],
-    },
-    {
-      path: SchedulerPath.main,
-      element: <MainLayout />,
-      children: [
         {
-          path: '',
+          path: SchedulerPath.main,
           element: (
             <SuspenseUI>
               <TimeTablePage />
             </SuspenseUI>
           ),
         },
-      ],
-    },
-    {
-      path: 'uikit',
-      element: <MainLayout />,
-      children: [
         {
-          path: '',
+          path: 'uikit',
           element: (
             <SuspenseUI>
               <UIKitPage />
             </SuspenseUI>
           ),
         },
-      ],
-    },
-    {
-      path: '404',
-      element: <MainLayout />,
-      children: [
         {
-          path: '',
+          path: '404',
           element: <SuspenseUI>404</SuspenseUI>,
-        },
+        }
       ],
     },
     {

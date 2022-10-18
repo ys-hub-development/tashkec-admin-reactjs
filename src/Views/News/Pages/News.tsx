@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { APP } from 'Constants/App'
 import { CommonPath, NewsPath } from 'Constants/Navigation'
 import { useCallback } from 'react'
@@ -16,7 +16,7 @@ export default () => {
   return (
     <Grid container rowSpacing={4}>
       <Grid item xs={12}>
-        <SectionHeading onAdd={onAdd} addTitle={APP.ADD_NEWS} />
+        <SectionHeading onAdd={onAdd} addTitle={APP.ADD_NEWS} langFilter />
       </Grid>
       <Grid item xs={12}>
         <NewsList />

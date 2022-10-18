@@ -8,7 +8,6 @@ export enum CommonPath {
 export enum MainPath {
   main = 'main',
   banner = 'banner',
-  logo = 'logo',
   popup = 'popup',
 }
 
@@ -23,19 +22,34 @@ export enum AboutPath {
   history = 'history',
   plan = 'plan',
   address = 'contacts',
+  partners = 'partners'
 }
 
 export enum NewsPath {
   main = 'news',
   'center-news' = 'center-news',
   'center-events' = 'center-events',
-  'study-in-korea' = 'study-in-korea',
+}
+
+export enum StudyPath {
+  main = 'study-in-korea',
+  'program-of-gks' = 'program-of-gks',
+  'association-gks' = 'association-gks',
+  'news-of-study' = 'study',
+  'program-for-kor' = 'program-for-kor'
+}
+
+export enum CulturePath {
+  main = 'culture',
+  'creative-mugs' = 'creative-mugs',
+  'culture-of-korea' = 'culture-of-korea'
 }
 
 export enum MaterialPath {
   main = 'material',
-  topik = 'topik',
-  edu = 'educational',
+  'topik-materials' = 'topik-materials',
+  'topik-levels' = 'topik-levels',
+  'study-material' = 'study-material',
 }
 
 export enum SchedulerPath {
@@ -44,14 +58,16 @@ export enum SchedulerPath {
 
 export enum InstitutionPath {
   main = 'institution',
-  'korean-university'= 'korean-university',
-  'college-lyceum'= 'college-lyceum',
-  'uzbekistan-university'= 'uzbekistan-university',
+  'korean-university' = 'korean-university',
+  'college-lyceum' = 'college-lyceum',
+  'uzbekistan-university' = 'uzbekistan-university',
   school = 'school'
 }
 
 export enum FaqPath {
   main = 'faq',
+  answers = 'answers',
+  questions = 'questions'
 }
 
 export enum GalleryPath {
@@ -67,7 +83,6 @@ export enum SettingsPath {
 export enum MainPathTitle {
   main = 'Главная',
   banner = 'Баннеры',
-  logo = 'Логотипы',
   popup = 'Поп-ап',
 }
 
@@ -89,35 +104,52 @@ export enum AboutPathTitle {
   history = 'Наша история',
   plan = 'План работы',
   address = 'Наш адрес',
+  partners = 'Партнеры'
 }
 
 export enum NewsPathTitle {
   main = 'Новости',
   'center-news' = 'Новости центра',
   'center-events' = 'События центра',
-  'study-in-korea' = 'Учеба в Корее',
+}
+
+export enum StudyPathTitle {
+  main = 'Учёба в Корее',
+  'program-of-gks' = 'Программа GKS',
+  'association-gks' = 'Ассоциация выпускников GKS ',
+  'news-of-study' = 'Новости об учёбе в Корее',
+  'program-for-kor' = 'Программы для соотечественников'
 }
 
 export enum MaterialPathTitle {
   main = 'Материалы',
-  topik = 'Материалы TOPIK',
-  edu = 'Учебные материалы',
+  'topik-materials' = 'Материалы Топик',
+  'topik-levels' = 'Топик уровень',
+  'study-material' = 'Учебные материалы',
 }
 
 export enum SchedulerPathTitle {
   main = 'Расписание',
 }
 
+export enum CulturePathTitle {
+  main = 'Культура Кореи',
+  'creative-mugs' = 'Творческие кружки',
+  'culture-of-korea' = 'Познаём культуру Кореи'
+}
+
 export enum InstitutionPathTitle {
   main = 'Учреждения',
-  'college-lyceum'= 'Колледжи / Лицеи',
-  'korean-university'= 'Университеты Кореи',
-  'uzbekistan-university'= 'Университеты Узбекистан',
+  'college-lyceum' = 'Колледжи / Лицеи',
+  'korean-university' = 'Университеты Кореи',
+  'uzbekistan-university' = 'Университеты Узбекистан',
   school = 'Школа'
 }
 
 export enum FaqPathTitle {
   main = 'Вопрос - ответ',
+  answers = 'Ответы',
+  questions = 'Вопросы'
 }
 
 export enum GalleryPathTitle {

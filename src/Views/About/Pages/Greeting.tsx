@@ -1,6 +1,6 @@
 import { GreetingForm } from 'Views/About/Organisms'
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 
 const GreetingPage = () => {
   return (

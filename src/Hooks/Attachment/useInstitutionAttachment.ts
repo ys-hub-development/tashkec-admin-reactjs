@@ -6,7 +6,7 @@ type Props = ControllerHookProps
 
 export function useInstitutionAttachment({ initList, detailId, extraId }: Props) {
   return useCRUDApi<IAttachmentBase[], IAttachmentBase, any>({
-    key: 'studyInKoreaAttachment',
+    key: 'UniversityAttachment',
     url: '/api/attachments/education-files',
     enabled: true,
     initList,

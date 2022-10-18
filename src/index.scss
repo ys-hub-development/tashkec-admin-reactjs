@@ -4,6 +4,7 @@
 
 :root {
   --primary: #6792F1;
+  --primary-dark: #2E5AAA;
   --primary-light: rgba(32, 99, 245, 0.1);
   --secondary: #FF7F51;
   --secondary-light: rgba(255, 120, 72, 0.1);
@@ -107,5 +108,40 @@ a {
   svg {
     width: 20px;
     height: 20px;
+  }
+}
+
+.custom-pagination {
+  .MuiPaginationItem-outlined {
+    &.Mui-selected {
+      background-color: var(--primary-dark);
+      color: #fff;
+      border-color: var(--primary-dark);
+
+      &:hover {
+        background-color: var(--primary-dark);
+      }
+    }
+  }
+}
+
+.spinner {
+  position: absolute;
+  left: 0;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+  &.isLoading {
+    display: flex;
+  }
+
+  &.isFetching {
+    display: flex;
+    opacity: .3;
   }
 }

@@ -17,6 +17,44 @@ export const theme = createTheme({
   components: {
     MuiButton: MuiButtonComponent(),
     MuiTab: MuiTabComponent(),
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+          paddingTop: '10px',
+          paddingBottom: '10px',
+          paddingLeft: '16px',
+
+          input: {
+            fontSize: 14,
+            color: TEXT_COLOR.primary,
+            fontWeight: 400,
+
+            '&::placeholder': {
+              color: TEXT_COLOR.secondary,
+              opacity: 1
+            },
+          },
+
+          '&:hover': {
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(137, 146, 169, 0.2)',
+            }
+          },
+
+          '&.Mui-focused': {
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: PRIMARY_COLOR.main,
+              borderWidth: '1px'
+            }
+          },
+
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: 'rgba(137, 146, 169, 0.2)',
+          }
+        }
+      }
+    },
     MuiPaper: {
       styleOverrides: {
         root: {
@@ -56,6 +94,22 @@ export const theme = createTheme({
         },
       },
     },
+    MuiPagination: {
+      defaultProps: {
+        variant:'outlined',
+        shape: 'rounded',
+        color: 'primary',
+        size: 'large'
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        rounded: {
+          borderRadius: 'unset',
+          margin: 0
+        },
+      }
+    }
   },
   typography: TypographyComponent(),
 })

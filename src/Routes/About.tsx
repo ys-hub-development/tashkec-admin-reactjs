@@ -1,27 +1,32 @@
 import { MainLayout } from 'Components/Layouts'
 import { SuspenseUI } from 'Components/UI'
-import { SchedulerPath } from 'Constants/Navigation'
 import {
   ContactInfoPage,
   GreetingPage,
   HistoryAddPage,
   HistoryPage,
+  PartnerPage,
   StructurePage,
   WorkPlanAddPage,
   WorkPlanEditPage,
   WorkPlanPage,
 } from 'Views/About'
-import { TimeTablePage } from 'Views/TimeTable'
+import { AboutPath, CommonPath } from 'Constants/Navigation'
+import { Navigate } from 'react-router-dom'
 
 export const aboutRoutes = {
   path: '',
   children: [
     {
-      path: '/about',
+      path: `/${AboutPath.main}`,
       element: <MainLayout />,
       children: [
         {
-          path: 'greeting',
+          path: '',
+          element: <Navigate to={`/${AboutPath.main}/${AboutPath.greeting}`} />,
+        },
+        {
+          path: AboutPath.greeting,
           element: (
             <SuspenseUI>
               <GreetingPage />
@@ -29,7 +34,15 @@ export const aboutRoutes = {
           ),
         },
         {
-          path: 'structure',
+          path: AboutPath.partners,
+          element: (
+            <SuspenseUI>
+              <PartnerPage />
+            </SuspenseUI>
+          ),
+        },
+        {
+          path: AboutPath.structure,
           element: (
             <SuspenseUI>
               <StructurePage />
@@ -37,7 +50,7 @@ export const aboutRoutes = {
           ),
         },
         {
-          path: 'contacts',
+          path: AboutPath.address,
           element: (
             <SuspenseUI>
               <ContactInfoPage />
@@ -45,7 +58,7 @@ export const aboutRoutes = {
           ),
         },
         {
-          path: 'history',
+          path: AboutPath.history,
           children: [
             {
               path: '',
@@ -56,7 +69,7 @@ export const aboutRoutes = {
               ),
             },
             {
-              path: 'add',
+              path: CommonPath.add,
               element: (
                 <SuspenseUI>
                   <HistoryAddPage />
@@ -64,7 +77,7 @@ export const aboutRoutes = {
               ),
             },
             {
-              path: 'edit/:historyId',
+              path: `${CommonPath.edit}/:historyId`,
               element: (
                 <SuspenseUI>
                   <HistoryAddPage />
@@ -74,7 +87,7 @@ export const aboutRoutes = {
           ],
         },
         {
-          path: 'plan',
+          path: AboutPath.plan,
           children: [
             {
               path: '',
@@ -85,7 +98,7 @@ export const aboutRoutes = {
               ),
             },
             {
-              path: 'add',
+              path: CommonPath.add,
               element: (
                 <SuspenseUI>
                   <WorkPlanAddPage />
@@ -93,7 +106,7 @@ export const aboutRoutes = {
               ),
             },
             {
-              path: 'edit/:planId',
+              path: `${CommonPath.edit}/:planId`,
               element: (
                 <SuspenseUI>
                   <WorkPlanEditPage />

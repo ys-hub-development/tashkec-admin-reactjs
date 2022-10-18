@@ -42,11 +42,13 @@ export function useCRUDApi<ListModel, Model, Data>({
       return httpClient.post<Model>(url, data, { ...(axiosParam || {}) })
     },
     {
-      onSuccess: (_, { action }) => {
+      onSuccess: ({ data }, { action, noMessage }) => {
         if (action) {
-          action()
+          action({data})
         }
-        toast.success(APP.DATA_SUCCESS_SAVED)
+        if(!noMessage) {
+          toast.success(APP.DATA_SUCCESS_SAVED)
+        }
       },
       onError: (_, { action }) => {
         if (action) {
@@ -61,11 +63,14 @@ export function useCRUDApi<ListModel, Model, Data>({
       return httpClient.patch<Model>(`${url}/${id}`, data, { ...(axiosParam || {}) })
     },
     {
-      onSuccess: (_, { action }) => {
+      onSuccess: ({data}, { action, noMessage }) => {
         if (action) {
-          action()
+          action({data})
         }
-        toast.success(APP.DATA_SUCCESS_CHANGED)
+
+        if(!noMessage) {
+          toast.success(APP.DATA_SUCCESS_CHANGED)
+        }
       },
       onError: (_, { action }) => {
         if (action) {

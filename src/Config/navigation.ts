@@ -2,6 +2,8 @@ import {
   AboutPath,
   AboutPathTitle,
   CommonPath,
+  CulturePath,
+  CulturePathTitle,
   FaqPath,
   FaqPathTitle,
   GalleryPath,
@@ -18,6 +20,8 @@ import {
   SchedulerPathTitle,
   SettingsPath,
   SettingsPathTitle,
+  StudyPath,
+  StudyPathTitle,
   UserPath,
   UserPathTitle,
 } from 'Constants/Navigation'
@@ -38,7 +42,6 @@ export const appPublicNavigation: AppNavigation[] = [
     path: MainPath.main,
     children: [
       { title: MainPathTitle.banner, path: MainPath.banner },
-      { title: MainPathTitle.logo, path: MainPath.logo },
       { title: MainPathTitle.popup, path: MainPath.popup },
     ],
   },
@@ -51,6 +54,7 @@ export const appPublicNavigation: AppNavigation[] = [
       { title: AboutPathTitle.history, path: AboutPath.history },
       { title: AboutPathTitle.plan, path: AboutPath.plan },
       { title: AboutPathTitle.address, path: AboutPath.address },
+      { title: AboutPathTitle.partners, path: AboutPath.partners },
     ],
   },
   {
@@ -59,15 +63,33 @@ export const appPublicNavigation: AppNavigation[] = [
     children: [
       { title: NewsPathTitle['center-news'], path: NewsPath['center-news'] },
       { title: NewsPathTitle['center-events'], path: NewsPath['center-events'] },
-      { title: NewsPathTitle['study-in-korea'], path: NewsPath['study-in-korea'] },
+    ],
+  },
+  {
+    title: StudyPathTitle.main,
+    path: StudyPath.main,
+    children: [
+      { title: StudyPathTitle['program-of-gks'], path: StudyPath['program-of-gks'] },
+      { title: StudyPathTitle['association-gks'], path: StudyPath['association-gks'] },
+      { title: StudyPathTitle['news-of-study'], path: StudyPath['news-of-study'] },
+      { title: StudyPathTitle['program-for-kor'], path: StudyPath['program-for-kor'] },
+    ],
+  },
+  {
+    title: CulturePathTitle.main,
+    path: CulturePath.main,
+    children: [
+      { title: CulturePathTitle['creative-mugs'], path: CulturePath['creative-mugs'] },
+      { title: CulturePathTitle['culture-of-korea'], path: CulturePath['culture-of-korea'] },
     ],
   },
   {
     title: MaterialPathTitle.main,
     path: MaterialPath.main,
     children: [
-      { title: MaterialPathTitle.topik, path: MaterialPath.topik },
-      { title: MaterialPathTitle.edu, path: MaterialPath.edu },
+      { title: MaterialPathTitle['topik-materials'], path: MaterialPath['topik-materials'] },
+      { title: MaterialPathTitle['topik-levels'], path: MaterialPath['topik-levels'] },
+      { title: MaterialPathTitle['study-material'], path: MaterialPath['study-material'] },
     ],
   },
   {
@@ -87,6 +109,10 @@ export const appPublicNavigation: AppNavigation[] = [
   {
     title: FaqPathTitle.main,
     path: FaqPath.main,
+    children: [
+      // { title: FaqPathTitle.questions, path: FaqPath.questions },
+      { title: FaqPathTitle.answers, path: FaqPath.answers },
+    ],
   },
   {
     title: GalleryPathTitle.main,
@@ -130,4 +156,4 @@ export const appAdminNavigation: AppNavigation[] = [
   },
 ]
 
-export const appNavigation = [...appPublicNavigation, ...appAdminNavigation]
+export const appNavigation = [ ...appPublicNavigation, ...appAdminNavigation ]

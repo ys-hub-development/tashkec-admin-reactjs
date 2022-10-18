@@ -3,18 +3,24 @@ import { IParams } from 'Types/app'
 import { FormLangTab } from 'Components/Tabs'
 import { Button, CircularProgress, Grid, Stack } from '@mui/material'
 import { formLangTab } from 'Data/app'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import { Controller } from 'react-hook-form'
 import { InputUI, TextEditorUI } from 'Components/UI'
 import { APP } from 'Constants/App'
-import { NewsPath } from 'Constants/Navigation'
-import { useUniversityForm } from 'Views/University/Hooks'
+import { InstitutionPath } from 'Constants/Navigation'
+import { useInstitutionConfig, useUniversityForm } from 'Views/University/Hooks'
+import { InstitutionContext } from '../Context'
 
 
 export const UniversityForm = () => {
   const { institutionId } = useParams<IParams>()
+  const { type } = useContext(InstitutionContext)
+  const { subPath } = useInstitutionConfig(type)
   const navigate = useNavigate()
-  const { form, onSubmit, langError, disabled, isLoading } = useUniversityForm({ initList: false, detailId: institutionId })
+  const { form, onSubmit, langError, disabled, isLoading } = useUniversityForm({
+    initList: false,
+    detailId: institutionId,
+  })
   const { control, setValue, handleSubmit, setError } = form
 
   return (
@@ -80,7 +86,7 @@ export const UniversityForm = () => {
                 </Button>
                 <Button
                   className='light' size='large'
-                  onClick={() => navigate(`/${NewsPath.main}/${NewsPath['center-news']}`)}
+                  onClick={() => navigate(`/${InstitutionPath.main}/${subPath}`)}
                 >
                   {APP.CANCEL}
                 </Button>

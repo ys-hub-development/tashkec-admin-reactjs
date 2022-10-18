@@ -2,12 +2,12 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { Content, Header, Sidebar } from 'Components/Layouts/Organisms'
 import { useStore } from 'effector-react'
 import { $AppStore } from 'Models'
+import { MainLayoutContext } from 'Components/Layouts/Context'
+import { MainLayoutContextProps } from 'Components/Layouts/types'
 
-type Props = {
-  noWrapper?: boolean
-}
+type Props = MainLayoutContextProps
 
-export const MainLayout = ({ noWrapper }: Props) => {
+export const MainLayout = (props : Props) => {
   const { isAuthenticated } = useStore($AppStore)
 
   if (!isAuthenticated) {
@@ -15,12 +15,12 @@ export const MainLayout = ({ noWrapper }: Props) => {
   }
 
   return (
-    <>
+    <MainLayoutContext.Provider value={props}>
       <Header />
       <Sidebar />
-      <Content noWrapper={noWrapper}>
+      <Content>
         <Outlet />
       </Content>
-    </>
+    </MainLayoutContext.Provider>
   )
 }

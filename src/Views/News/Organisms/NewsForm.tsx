@@ -8,7 +8,7 @@ import { Fragment } from 'react'
 import { Controller } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { IParams } from 'Types/app'
-import { useNewsForm } from '../Hooks/useNewsForm'
+import { useNewsForm } from 'Views/News/Hooks'
 
 export const NewsForm = () => {
   const { newsId } = useParams<IParams>()

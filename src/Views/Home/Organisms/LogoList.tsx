@@ -1,9 +1,9 @@
 import { Grid } from '@mui/material'
-import { PictureItem } from 'Views/Home/Molecules'
 import { DropzoneUI } from 'Components/UI'
 import { useContext } from 'react'
 import { PictureContext } from 'Views/Home/Context/PictureContext'
 import { useLogo } from 'Hooks/Home/useLogo'
+import { PictureItem } from 'Components/Picture'
 
 
 export const LogoList = () => {

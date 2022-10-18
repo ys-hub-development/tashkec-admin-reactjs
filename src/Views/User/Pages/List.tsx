@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { useCallback } from 'react'
 import { UserList } from 'Views/User/Organisms'
 import { useNavigate } from 'react-router-dom'

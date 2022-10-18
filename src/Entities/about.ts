@@ -1,3 +1,5 @@
+import { PictureAttachment } from 'Entities/main'
+
 export type Greeting = {
   id: number
   titleUz: string
@@ -41,4 +43,15 @@ export interface ITimeTable {
   contentRu: string
   contentKr: string
   publishedDate: string
+}
+
+export interface IPartner {
+  attachmentId?: number
+  id: 0,
+  titleUz: string,
+  titleRu: string,
+  titleKr: string,
+  webUrl: string,
+  youtubeUrl: string,
+  attachment: PictureAttachment
 }

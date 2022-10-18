@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { AboutPath, CommonPath } from 'Constants/Navigation'
 import { useNavigate } from 'react-router-dom'
 import { WorkPlanList } from '../Organisms'
@@ -11,7 +11,11 @@ export default () => {
   return (
     <Grid container rowSpacing={4}>
       <Grid item xs={12}>
-        <SectionHeading addTitle={APP.ADD_PLAN} onAdd={() => navigate(`/${AboutPath.main}/${AboutPath.plan}/${CommonPath.add}`)} />
+        <SectionHeading
+          langFilter
+          addTitle={APP.ADD_PLAN}
+          onAdd={() => navigate(`/${AboutPath.main}/${AboutPath.plan}/${CommonPath.add}`)}
+        />
       </Grid>
       <Grid item xs={12}>
         <WorkPlanList />

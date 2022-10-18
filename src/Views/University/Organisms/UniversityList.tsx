@@ -2,7 +2,6 @@ import { useCallback, useContext, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useInstitution } from 'Hooks'
 import { URL_KEYS } from 'Constants/Url'
-import { IStudyInKorea } from 'Entities/news'
 import { InstitutionPath } from 'Constants/Navigation'
 import { ConfirmationDialog } from 'Components/Dialog'
 import { Grid } from '@mui/material'
@@ -30,7 +29,7 @@ export const UniversityList = () => {
   const _lang = searchParams.get(URL_KEYS.LANG)
 
   const getTitle = useCallback(
-    (item: IStudyInKorea) => {
+    (item: IInstitution) => {
       switch (_lang) {
         case 'Ru':
           return item.titleRu

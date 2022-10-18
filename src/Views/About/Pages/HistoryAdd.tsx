@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { APP } from 'Constants/App'
 import { HistoryForm } from 'Views/About/Organisms'
 

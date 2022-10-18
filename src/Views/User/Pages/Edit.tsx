@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { useParams } from 'react-router-dom'
 import { IParams } from 'Types/app'
 import { UserForm } from 'Components/User'

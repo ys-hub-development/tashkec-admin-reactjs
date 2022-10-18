@@ -1,3 +1,7 @@
 export { useAttachments } from './useAttachment'
 export { useStudyInKoreaAttachment } from './useStudyInKoreaAttachment'
 export { useInstitutionAttachment } from './useInstitutionAttachment'
+export { useStudyMaterialAttachment } from './useStudyMaterialAttachment'
+export { useTopikLevelAttachment } from './useTopikLevelAttachment'
+export { useCultureAttachments } from './useCultureAttachment'
+export { useGalleryAttachment } from './useGalleryAttachment'

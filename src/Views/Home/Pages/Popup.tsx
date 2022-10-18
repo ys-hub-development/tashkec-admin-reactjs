@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import { SectionHeading } from 'Components/SectionHeading'
+import { SectionHeading } from 'Components/Section'
 import { AdvertisingList } from 'Views/Home/Organisms'
 import { useCallback } from 'react'
 import { APP } from 'Constants/App'
