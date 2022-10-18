@@ -62,7 +62,7 @@ export const AdvertisingList = () => {
                 <PopupVideoItem
                   id={item.id}
                   className='banner'
-                  onRemove={onRemove}
+                  onRemove={setRemoveId}
                   url={item.videoUrl}
                   onEdit={onOpenDialog}
                   isLoading={getRemoveLoading(item.id)}

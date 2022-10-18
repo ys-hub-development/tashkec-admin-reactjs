@@ -14,7 +14,11 @@ type Values = Omit<WorkPlan, 'id'>
 
 export function useWorkPlanForm(props: Props) {
   const navigate = useNavigate()
-  const { detailQuery: { data }, create, update } = useWorkPlan(props)
+  const {
+    detailQuery: { data },
+    create,
+    update,
+  } = useWorkPlan(props)
   const schema = yup.object().shape({
     titleKr: yup.string().required(APP.REQUIRED_FIELD),
     titleRu: yup.string().required(APP.REQUIRED_FIELD),
@@ -39,17 +43,23 @@ export function useWorkPlanForm(props: Props) {
 
   const action = useCallback(() => {
     navigate(`/${AboutPath.main}/${AboutPath.plan}`)
-  }, [ navigate ])
+  }, [navigate])
 
-  const onSubmit = useCallback((values: Values) => {
-    if (props.detailId) {
-      update.mutate({ id: props.detailId, data: values, action })
-    } else {
-      create.mutate({ data: values, action })
-    }
-  }, [ action, create, props.detailId, update ])
+  const onSubmit = useCallback(
+    (values: Values) => {
+      if (props.detailId) {
+        update.mutate({ id: props.detailId, data: { ...values, id: Number(props.detailId) }, action })
+      } else {
+        create.mutate({ data: values, action })
+      }
+    },
+    [action, create, props.detailId, update],
+  )
 
-  const { formState: { errors }, setValue } = form
+  const {
+    formState: { errors },
+    setValue,
+  } = form
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const langError: Partial<LangError> = {
     Ru: !!errors.contentRu?.message || !!errors.titleRu?.message,
@@ -59,9 +69,9 @@ export function useWorkPlanForm(props: Props) {
 
   const disabled = useMemo(() => {
     return Object.values(langError).findIndex(item => item) !== -1
-  }, [ langError ])
+  }, [langError])
 
-  const isLoading = useMemo(() => create.isLoading || update.isLoading, [ create, update ])
+  const isLoading = useMemo(() => create.isLoading || update.isLoading, [create, update])
 
   useEffect(() => {
     if (props.detailId && data) {
@@ -73,7 +83,7 @@ export function useWorkPlanForm(props: Props) {
       setValue('titleKr', data.titleKr)
       setValue('workPlanTypeEnum', data.workPlanTypeEnum)
     }
-  }, [ data, props.detailId, setValue ])
+  }, [data, props.detailId, setValue])
 
   return {
     form,

@@ -5,7 +5,7 @@ import { ControllerHookProps } from 'Types/app'
 type Props = ControllerHookProps
 
 export function useCenterHistory({ initList, detailId }: Props) {
-  return useCRUDApi<CenterHistory[], CenterHistory, Omit<CenterHistory, 'id'>>({
+  return useCRUDApi<CenterHistory[], CenterHistory, Partial<CenterHistory>>({
     key: 'history',
     url: '/api/our-histories',
     enabled: true,

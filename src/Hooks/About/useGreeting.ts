@@ -5,7 +5,7 @@ import { Greeting } from 'Entities/about'
 type Props = ControllerHookProps
 
 export function useGreeting({ detailId, initList }: Props) {
-  return useCRUDApi<Greeting[], Greeting, Omit<Greeting, 'id'>>({
+  return useCRUDApi<Greeting[], Greeting, Partial<Greeting>>({
     key: 'greeting',
     url: '/api/greetings',
     enabled: true,

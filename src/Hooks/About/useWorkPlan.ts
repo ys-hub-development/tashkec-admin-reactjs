@@ -5,7 +5,7 @@ import { WorkPlan } from 'Entities/about'
 type Props = ControllerHookProps
 
 export function useWorkPlan({ initList, detailId }: Props) {
-  return useCRUDApi<WorkPlan[], WorkPlan, Omit<WorkPlan, 'id'>>({
+  return useCRUDApi<WorkPlan[], WorkPlan, Partial<WorkPlan>>({
     key: 'plan',
     url: '/api/work-plans',
     enabled: true,

@@ -35,7 +35,7 @@ export function useGreetingForm() {
 
   const onSubmit = useCallback((values: Values) => {
     if (id) {
-      update.mutate({ id: String(id), data: values })
+      update.mutate({ id: String(id), data: {...values, id} })
     } else {
       create.mutate({ data: values })
     }

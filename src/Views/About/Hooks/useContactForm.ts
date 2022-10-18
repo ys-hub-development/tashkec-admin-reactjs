@@ -10,7 +10,11 @@ import { Contact } from 'Entities/about'
 type Values = Omit<Contact, 'id'>
 
 export function useContactForm() {
-  const { listQuery: { data }, create, update } = useContact({ initList: true })
+  const {
+    listQuery: { data },
+    create,
+    update,
+  } = useContact({ initList: true })
   const id = data?.length ? data[0].id : null
   const schema = yup.object().shape({
     titleKr: yup.string().required(APP.REQUIRED_FIELD),
@@ -37,15 +41,21 @@ export function useContactForm() {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = useCallback((values: Values) => {
-    if (id) {
-      update.mutate({ id: String(id), data: {...values, id} })
-    } else {
-      create.mutate({ data: values })
-    }
-  }, [ create, id, update ])
+  const onSubmit = useCallback(
+    (values: Values) => {
+      if (id) {
+        update.mutate({ id: String(id), data: { ...values, id } })
+      } else {
+        create.mutate({ data: values })
+      }
+    },
+    [create, id, update],
+  )
 
-  const { formState: { errors }, setValue } = form
+  const {
+    formState: { errors },
+    setValue,
+  } = form
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const langError: Partial<LangError> = {
     Ru: !!errors.contentRu?.message || !!errors.titleRu?.message,
@@ -55,9 +65,9 @@ export function useContactForm() {
 
   const disabled = useMemo(() => {
     return Object.values(langError).findIndex(item => item) !== -1
-  }, [ langError ])
+  }, [langError])
 
-  const isLoading = useMemo(() => create.isLoading || update.isLoading, [ create, update ])
+  const isLoading = useMemo(() => create.isLoading || update.isLoading, [create, update])
 
   useEffect(() => {
     if (id && data) {
@@ -71,7 +81,7 @@ export function useContactForm() {
       setValue('phoneNumber', d.phoneNumber)
       setValue('contactEmail', d.contactEmail)
     }
-  }, [ data, id, setValue ])
+  }, [data, id, setValue])
 
   return {
     form,

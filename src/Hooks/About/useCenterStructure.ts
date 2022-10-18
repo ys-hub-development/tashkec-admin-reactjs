@@ -5,7 +5,7 @@ import { CenterStructure } from 'Entities/about'
 type Props = ControllerHookProps
 
 export function useCenterStructure({ detailId, initList }: Props) {
-  return useCRUDApi<CenterStructure[], CenterStructure, Omit<CenterStructure, 'id'>>({
+  return useCRUDApi<CenterStructure[], CenterStructure, Partial<CenterStructure>>({
     key: 'structure',
     url: '/api/center-structures',
     enabled: true,

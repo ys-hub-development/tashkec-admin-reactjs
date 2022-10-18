@@ -36,7 +36,7 @@ export function useCenterStructureForm() {
 
   const onSubmit = useCallback((values: Values) => {
     if (id) {
-      update.mutate({ id: String(id), data: values })
+      update.mutate({ id: String(id), data: {...values, id: Number(id)} })
     } else {
       create.mutate({ data: values })
     }

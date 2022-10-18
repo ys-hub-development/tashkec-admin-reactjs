@@ -53,7 +53,7 @@ export function useCenterHistoryForm({ detailId }: Props) {
         ...values,
       }
       if (detailId) {
-        update.mutate({ data: d, id: detailId, action })
+        update.mutate({ data: { ...d, id: Number(detailId) }, id: detailId, action })
       } else {
         create.mutate({ data: d, action })
       }

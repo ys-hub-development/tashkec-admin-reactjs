@@ -5,7 +5,7 @@ import { ControllerHookProps } from 'Types/app'
 type Props = ControllerHookProps
 
 export function useContact({ initList, detailId }: Props) {
-  return useCRUDApi<Contact[], Contact, any>({
+  return useCRUDApi<Contact[], Contact, Partial<Contact>>({
     key: 'contact',
     url: '/api/contact-infos',
     enabled: true,
