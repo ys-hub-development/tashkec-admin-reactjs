@@ -1,16 +1,15 @@
 import { Grid } from '@mui/material'
 import { MainCard } from 'Components/Cards'
 import { ConfirmationDialog } from 'Components/Dialog'
-import { NewsPath } from 'Constants/Navigation'
-import { URL_KEYS } from 'Constants/Url'
-import { format } from 'date-fns'
-import { IEvents } from 'Entities/news'
-import { useEvents } from 'Hooks'
-import { useCallback, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
 import { SectionLoader } from 'Components/Section'
 import { PaginationUI } from 'Components/UI'
+import { NewsPath } from 'Constants/Navigation'
+import { URL_KEYS } from 'Constants/Url'
+import { IEvents } from 'Entities/news'
+import { useEvents } from 'Hooks'
 import moment from 'moment'
+import { useCallback, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export const EventsList = () => {
   const [removeId, setRemoveId] = useState<number | null>(null)
@@ -51,7 +50,6 @@ export const EventsList = () => {
       setRemoveId(null)
     }
   }, [refetch, remove, removeId])
-
 
   return (
     <SectionLoader isLoading={isLoading} isFetching={isFetching}>

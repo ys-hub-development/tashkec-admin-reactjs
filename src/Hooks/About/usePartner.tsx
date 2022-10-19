@@ -6,7 +6,7 @@ type Props = ControllerHookProps
 
 export function usePartner({ initList, detailId }: Props) {
   return useCRUDApi<IPartner[], IPartner, Partial<IPartner>>({
-    key: 'plan',
+    key: 'partner',
     url: '/api/partners',
     enabled: true,
     initList,
