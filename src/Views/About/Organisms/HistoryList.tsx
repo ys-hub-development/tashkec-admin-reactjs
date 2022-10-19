@@ -10,6 +10,7 @@ import { AboutPath } from 'Constants/Navigation'
 import { ConfirmationDialog } from 'Components/Dialog'
 import { PaginationUI } from 'Components/UI'
 import { SectionLoader } from 'Components/Section'
+import moment from 'moment'
 
 export const HistoryList = () => {
   const navigate = useNavigate()
@@ -64,7 +65,7 @@ export const HistoryList = () => {
                   onRemove={setRemoveId}
                   id={item.id}
                   text={getTitle(item)}
-                  date={format(new Date(item.publishedDate), 'dd/MM/yyyy')}
+                  date={moment(item.publishedDate).utc().format('DD/MM/yyyy hh:mm')}
                 />
               </Grid>
             ))}

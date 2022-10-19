@@ -4,7 +4,7 @@ import { APP } from 'Constants/App'
 import { CommonPath, NewsPath } from 'Constants/Navigation'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { NewsList } from '../Organisms'
+import { EventsList } from '../Organisms'
 
 export default () => {
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ export default () => {
         <SectionHeading onAdd={onAdd} addTitle={APP.ADD_EVENT} langFilter />
       </Grid>
       <Grid item xs={12}>
-        <NewsList />
+        <EventsList />
       </Grid>
     </Grid>
   )

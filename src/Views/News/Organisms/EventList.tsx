@@ -10,14 +10,16 @@ import { useCallback, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { SectionLoader } from 'Components/Section'
 import { PaginationUI } from 'Components/UI'
+import moment from 'moment'
 
 export const EventsList = () => {
-  const [ removeId, setRemoveId ] = useState<number | null>(null)
+  const [removeId, setRemoveId] = useState<number | null>(null)
   const navigate = useNavigate()
   const {
-    listQuery: { data, refetch, isLoading, isFetching, axiosData }, remove,
+    listQuery: { data, refetch, isLoading, isFetching, axiosData },
+    remove,
   } = useEvents({ initList: true })
-  const [ searchParams ] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const _lang = searchParams.get(URL_KEYS.LANG)
 
   const getTitle = useCallback(
@@ -33,14 +35,14 @@ export const EventsList = () => {
           return item.titleRu
       }
     },
-    [ _lang ],
+    [_lang],
   )
 
   const onEdit = useCallback(
     (id: number) => {
       navigate(`/${NewsPath.main}/${NewsPath['center-events']}/edit/${id}`)
     },
-    [ navigate ],
+    [navigate],
   )
 
   const onRemove = useCallback(() => {
@@ -48,33 +50,30 @@ export const EventsList = () => {
       remove.mutate({ id: String(removeId), action: () => refetch() })
       setRemoveId(null)
     }
-  }, [ refetch, remove, removeId ])
+  }, [refetch, remove, removeId])
+
 
   return (
     <SectionLoader isLoading={isLoading} isFetching={isFetching}>
       <ConfirmationDialog open={!!removeId} onClose={() => setRemoveId(null)} onAccept={onRemove} />
-      {
-        !isLoading && data && (
-          <>
-            <Grid container rowSpacing={2}>
-              {
-                data.map(item => (
-                  <Grid item key={item.id} xs={12}>
-                    <MainCard
-                      onEdit={onEdit}
-                      onRemove={setRemoveId}
-                      id={item.id}
-                      text={getTitle(item)}
-                      date={format(new Date(item.publishedDate), 'dd/MM/yyyy hh:mm')}
-                    />
-                  </Grid>
-                ))
-              }
-            </Grid>
-            <PaginationUI length={Number(axiosData?.headers?.['x-total-count']) || 0} />
-          </>
-        )
-      }
+      {!isLoading && data && (
+        <>
+          <Grid container rowSpacing={2}>
+            {data.map(item => (
+              <Grid item key={item.id} xs={12}>
+                <MainCard
+                  onEdit={onEdit}
+                  onRemove={setRemoveId}
+                  id={item.id}
+                  text={getTitle(item)}
+                  date={moment(item.publishedDate).utc().format('DD/MM/yyyy hh:mm')}
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <PaginationUI length={Number(axiosData?.headers?.['x-total-count']) || 0} />
+        </>
+      )}
     </SectionLoader>
   )
 }

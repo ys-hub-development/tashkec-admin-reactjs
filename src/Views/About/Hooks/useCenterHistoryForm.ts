@@ -48,8 +48,10 @@ export function useCenterHistoryForm({ detailId }: Props) {
 
   const onSubmit = useCallback(
     ({ publishedDate, ...values }: Values) => {
+      const offset = -(new Date().getTimezoneOffset() / 60)
+      const publishDate = new Date(new Date(publishedDate).getTime() + offset * 3600 * 1000).toISOString()
       const d: Omit<CenterHistory, 'id'> = {
-        publishedDate: new Date(publishedDate).toISOString(),
+        publishedDate:publishDate,
         ...values,
       }
       if (detailId) {

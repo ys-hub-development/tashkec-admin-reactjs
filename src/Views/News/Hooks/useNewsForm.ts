@@ -53,22 +53,29 @@ export function useNewsForm({ initList, detailId }: Props) {
   )
 
   const onSubmit = useCallback(
-    (values: Values) => {
+    ({ publishedDate, ...values }: Values) => {
+      const offset = -(new Date().getTimezoneOffset() / 60)
+      const publishDate = new Date(new Date(publishedDate).getTime() + offset * 3600 * 1000).toISOString()
+      const d: Omit<INews, 'id'> = {
+        ...values,
+        publishedDate: publishDate,
+      }
       if (detailId) {
         update.mutate({
           id: detailId,
-          data: { ...values, id: Number(detailId), publishedDate: new Date(values.publishedDate).toISOString() },
+          data: { ...d, id: Number(detailId) },
           action,
         })
       } else {
         create.mutate({
-          data: { ...values, publishedDate: new Date(values.publishedDate).toISOString() },
+          data: d,
           action,
         })
       }
     },
     [create, update, detailId, action],
   )
+
   const {
     formState: { errors },
     setValue,

@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { APP } from 'Constants/App'
 import { NewsPath } from 'Constants/Navigation'
-import { INews } from 'Entities/news'
+import { IEvents } from 'Entities/news'
 import { useEvents } from 'Hooks'
 import { useCallback, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { ApiActionParamType, ControllerHookProps, LangError } from 'Types/app'
 import * as yup from 'yup'
 
-type Values = Omit<INews, 'id'>
+type Values = Omit<IEvents, 'id'>
 type Props = ControllerHookProps
 
 export function useEventForm({ initList, detailId }: Props) {
@@ -53,16 +53,22 @@ export function useEventForm({ initList, detailId }: Props) {
   )
 
   const onSubmit = useCallback(
-    (values: Values) => {
+    ({ publishedDate, ...values }: Values) => {
+      const offset = new Date().getTimezoneOffset() / 60
+      const publishDate = new Date(new Date(publishedDate).getTime() + offset * 3600 * 1000).toISOString()
+      const d: Omit<IEvents, 'id'> = {
+        ...values,
+        publishedDate: publishDate,
+      }
       if (detailId) {
         update.mutate({
           id: detailId,
-          data: { ...values, id: Number(detailId), publishedDate: new Date(values.publishedDate).toISOString() },
+          data: { ...d, id: Number(detailId) },
           action,
         })
       } else {
         create.mutate({
-          data: { ...values, publishedDate: new Date(values.publishedDate).toISOString() },
+          data: d,
           action,
         })
       }

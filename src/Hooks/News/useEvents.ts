@@ -6,8 +6,8 @@ type Props = ControllerHookProps
 
 export function useEvents({ detailId, initList }: Props) {
   return useCRUDApi<IEvents[], IEvents, Partial<IEvents>>({
-    key: 'news',
-    url: '/api/news',
+    key: 'events',
+    url: '/api/events',
     enabled: true,
     detailId,
     initList,
