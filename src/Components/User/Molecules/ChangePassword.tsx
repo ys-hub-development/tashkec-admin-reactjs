@@ -5,29 +5,33 @@ import { InputUI } from 'Components/UI'
 import { APP } from 'Constants/App'
 import { updateDialogEvent } from 'Models'
 
-export const ChangePassword = () => {
-  const { form, onSubmit, disabled, isLoading } = useChangePassword()
+type Props = { userId?: string }
+export const ChangePassword = ({ userId }: Props) => {
+  const { form, onSubmit, disabled, isLoading } = useChangePassword({ userId })
   const { handleSubmit, control } = form
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container rowSpacing={3}>
-        <Grid item xs={12}>
-          <Controller
-            name='currentPassword'
-            control={control}
-            render={({ field, fieldState: { error } }) => (
-              <InputUI
-                {...field}
-                type='password'
-                label={APP.OLD_PASSWORD}
-                error={!!error?.message}
-                helperText={error?.message}
-                placeholder={APP.ENTER_OLD_PASSWORD}
-              />
-            )}
-          />
-        </Grid>
+        {!userId && (
+          <Grid item xs={12}>
+            <Controller
+              name='currentPassword'
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <InputUI
+                  {...field}
+                  type='password'
+                  label={APP.OLD_PASSWORD}
+                  error={!!error?.message}
+                  helperText={error?.message}
+                  placeholder={APP.ENTER_OLD_PASSWORD}
+                />
+              )}
+            />
+          </Grid>
+        )}
+
         <Grid item xs={12}>
           <Controller
             name='newPassword'
@@ -46,7 +50,7 @@ export const ChangePassword = () => {
         </Grid>
         <Grid item xs={12}>
           <Controller
-            name='confirmPassword'
+            name='repeatNewPassword'
             control={control}
             render={({ field, fieldState: { error } }) => (
               <InputUI
@@ -66,11 +70,12 @@ export const ChangePassword = () => {
               size='large'
               type='submit'
               startIcon={isLoading && <CircularProgress size={20} color='inherit' />}
-              disabled={isLoading && disabled}
-            >
+              disabled={isLoading && disabled}>
               {APP.SAVE}
             </Button>
-            <Button className='light' size='large' onClick={() => updateDialogEvent(null)}>{APP.CANCEL}</Button>
+            <Button className='light' size='large' onClick={() => updateDialogEvent(null)}>
+              {APP.CANCEL}
+            </Button>
           </Stack>
         </Grid>
       </Grid>

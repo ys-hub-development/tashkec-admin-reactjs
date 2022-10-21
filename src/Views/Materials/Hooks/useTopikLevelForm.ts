@@ -15,7 +15,12 @@ type Props = ControllerHookProps
 
 export function useTopikLevelForm({ initList, detailId, extraId }: Props) {
   const { list } = useTopikMaterialInfinite(true)
-  const { create, update, listQuery: { refetch }, detailQuery: { data } } = useTopikLevel({
+  const {
+    create,
+    update,
+    listQuery: { refetch },
+    detailQuery: { data },
+  } = useTopikLevel({
     initList,
     detailId,
     extraId,
@@ -38,23 +43,29 @@ export function useTopikLevelForm({ initList, detailId, extraId }: Props) {
     resolver: yupResolver(schema),
   })
 
-  const action = useCallback((field?: ApiActionParamType) => {
-    if (!field?.['err']) {
-      refetch()
-      updateDialogEvent(null)
-    }
-  }, [ refetch ])
-
-  const onSubmit = useCallback(({ materialsOfTopic, ...values }: Values) => {
-    const item = materialsOfTopic && list && list.find(item => item.id === materialsOfTopic.value)
-    if (item) {
-      if (detailId) {
-        update.mutate({ id: detailId, data: { ...values, id: Number(detailId), materialsOfTopic: item }, action })
-      } else {
-        create.mutate({ data: { ...values, materialsOfTopic: item }, action })
+  const action = useCallback(
+    (field?: ApiActionParamType) => {
+      if (!field?.['err']) {
+        refetch()
+        updateDialogEvent(null)
       }
-    }
-  }, [ list, detailId, update, action, create ])
+    },
+    [refetch],
+  )
+
+  const onSubmit = useCallback(
+    ({ materialsOfTopic, ...values }: Values) => {
+      const item = materialsOfTopic && list && list.find(item => item.id === materialsOfTopic.value)
+      if (item) {
+        if (detailId) {
+          update.mutate({ id: detailId, data: { ...values, id: Number(detailId), materialsOfTopic: item }, action })
+        } else {
+          create.mutate({ data: { ...values, materialsOfTopic: item }, action })
+        }
+      }
+    },
+    [list, detailId, update, action, create],
+  )
 
   const {
     formState: { errors },
@@ -70,18 +81,20 @@ export function useTopikLevelForm({ initList, detailId, extraId }: Props) {
 
   const disabled = useMemo(() => {
     return Object.values(langError).findIndex(item => item) !== -1
-  }, [ langError ])
+  }, [langError])
 
-  const isLoading = useMemo(() => create.isLoading || update.isLoading, [ create, update ])
+  const isLoading = useMemo(() => create.isLoading || update.isLoading, [create, update])
 
   useEffect(() => {
     if (data && detailId) {
       setValue('titleUz', data.titleUz)
       setValue('titleRu', data.titleRu)
       setValue('titleKr', data.titleKr)
-      setValue('materialsOfTopic', {value: data.materialsOfTopic.id, label: data.materialsOfTopic.titleRu})
+      if (data.materialsOfTopic) {
+        setValue('materialsOfTopic', { value: data.materialsOfTopic.id, label: data.materialsOfTopic.titleRu })
+      }
     }
-  }, [ data, detailId, setValue ])
+  }, [data, detailId, setValue])
 
   return {
     form,

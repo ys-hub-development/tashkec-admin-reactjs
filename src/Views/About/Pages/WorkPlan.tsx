@@ -4,6 +4,7 @@ import { AboutPath, CommonPath } from 'Constants/Navigation'
 import { useNavigate } from 'react-router-dom'
 import { WorkPlanList } from '../Organisms'
 import { APP } from 'Constants/App'
+import { WorkplantFilter } from '../Molecules'
 
 export default () => {
   const navigate = useNavigate()
@@ -15,6 +16,7 @@ export default () => {
           langFilter
           addTitle={APP.ADD_PLAN}
           onAdd={() => navigate(`/${AboutPath.main}/${AboutPath.plan}/${CommonPath.add}`)}
+          filter={<WorkplantFilter />}
         />
       </Grid>
       <Grid item xs={12}>

@@ -1,6 +1,7 @@
 import { Button, Grid, Stack, Typography } from '@mui/material'
 import { useLayoutHeading } from 'Hooks'
 import { PlusCircleFilledIcon } from 'Icons/Plus'
+import { ReactNode } from 'react'
 import { LangFilter } from '../Molecules'
 
 type Props = {
@@ -8,9 +9,10 @@ type Props = {
   title?: string
   addTitle?: string
   langFilter?: boolean
+  filter?: ReactNode
 }
 
-export const SectionHeading = ({ onAdd, title, addTitle, langFilter }: Props) => {
+export const SectionHeading = ({ onAdd, title, addTitle, langFilter, filter }: Props) => {
   const { contentHeading } = useLayoutHeading()
 
   return (
@@ -22,14 +24,20 @@ export const SectionHeading = ({ onAdd, title, addTitle, langFilter }: Props) =>
         {langFilter ? (
           <Stack direction='row' justifyContent='space-between'>
             <LangFilter />
-            {onAdd && (
-              <Button startIcon={<PlusCircleFilledIcon />} onClick={onAdd}>
-                {addTitle || ''}
-              </Button>
+            {(onAdd || filter) && (
+              <Stack direction='row' alignItems='center' spacing={2}>
+                {filter || null}
+                {onAdd && (
+                  <Button startIcon={<PlusCircleFilledIcon />} onClick={onAdd}>
+                    {addTitle || ''}
+                  </Button>
+                )}
+              </Stack>
             )}
           </Stack>
         ) : (
-          <Stack direction='row' alignItems='center'>
+          <Stack direction='row' alignItems='center' spacing={2}>
+            {filter || null}
             {onAdd && (
               <Button startIcon={<PlusCircleFilledIcon />} onClick={onAdd}>
                 {addTitle || ''}

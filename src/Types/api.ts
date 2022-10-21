@@ -5,11 +5,12 @@ export type QueryParams = {
   studyTypeEnum?: string
   koreanCultureType?: string
   searchValue?: string
+  timeType?: string
 }
 
 export type Response<D> = {
-  message: string,
-  object: D,
+  message: string
+  object: D
   success: boolean
 }
 

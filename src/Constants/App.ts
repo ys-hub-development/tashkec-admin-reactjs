@@ -59,6 +59,8 @@ export const APP = {
   ENTER_TEXT: 'Введите текст',
   FOR_MONTH: 'На месяц',
   FOR_YEAR: 'На год',
+  MONTH: 'Месяц',
+  YEAR: 'Год',
   PLAN: 'План',
   ADD_POPUP: 'Добавить поп-ап',
   VIDEO: 'Видео',
@@ -111,4 +113,6 @@ export const APP = {
   ADD_GALLERY: 'Добавить галерею',
   EDIT_GALLERY: 'Изменить галерею',
   MAKE_MAIN_PHOTO: 'Сделать главной',
+  FILTER: 'Фильтр',
+  PASSWORD_SUCCESSFULLY_CHANGED: 'Пароль успешно изменен',
 }

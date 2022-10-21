@@ -12,7 +12,7 @@ import { updateDialogEvent } from 'Models'
 import { ChangePassword } from 'Components/User/Molecules'
 
 type Props = {
-  userId?: string,
+  userId?: string
   type: 'account' | 'user'
 }
 
@@ -31,19 +31,19 @@ export const UserForm = ({ userId, type }: Props) => {
     } else {
       navigate('/')
     }
-  }, [ navigate, type ])
+  }, [navigate, type])
 
   const onClickChangePassword = useCallback(() => {
     updateDialogEvent({
       open: true,
       title: APP.CHANGE_PASSWORD,
-      content: <ChangePassword />,
+      content: <ChangePassword userId={userId} />,
       props: {
         fullWidth: true,
-        maxWidth: 'xs'
-      }
+        maxWidth: 'xs',
+      },
     })
-  }, [])
+  }, [userId])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -110,7 +110,8 @@ export const UserForm = ({ userId, type }: Props) => {
                 label={APP.EMAIL}
                 helperText={error?.message}
                 placeholder={APP.ENTER_EMAIL}
-                required error={!!error?.message}
+                required
+                error={!!error?.message}
               />
             )}
           />
@@ -122,20 +123,8 @@ export const UserForm = ({ userId, type }: Props) => {
             render={({ field, fieldState: { error } }) => {
               const { value, onChange, onBlur } = field
               return (
-                <InputMask
-                  value={value || ''}
-                  alwaysShowMask
-                  mask={'+\\9\\9\\8 99 999 99 99'}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                >
-                  <InputUI
-                    type='tel'
-                    required
-                    label={APP.PHONE}
-                    error={!!error?.message}
-                    helperText={error?.message}
-                  />
+                <InputMask value={value || ''} alwaysShowMask mask={'+\\9\\9\\8 99 999 99 99'} onChange={onChange} onBlur={onBlur}>
+                  <InputUI type='tel' required label={APP.PHONE} error={!!error?.message} helperText={error?.message} />
                 </InputMask>
               )
             }}
@@ -154,56 +143,57 @@ export const UserForm = ({ userId, type }: Props) => {
                 error={!!error?.message}
                 helperText={error?.message}
                 placeholder={APP.ENTER_PASSWORD}
-                endAdornment={userId
-                  ? <Link
-                    sx={{ cursor: 'pointer' }}
-                    onClick={onClickChangePassword}>{APP.CHANGE_PASSWORD}</Link>
-                  : undefined}
+                endAdornment={
+                  userId ? (
+                    <Link sx={{ cursor: 'pointer' }} onClick={onClickChangePassword}>
+                      {APP.CHANGE_PASSWORD}
+                    </Link>
+                  ) : undefined
+                }
               />
             )}
           />
         </Grid>
-        {
-          type === 'user' && (
-            <Grid item xs={12}>
-              <Stack direction='row'>
-                <Controller
-                  name='activated'
-                  control={control}
-                  render={({ field: { value } }) => (
-                    <FormControlLabel
-                      label={APP.ACTIVATED_USER}
-                      control={<Switch checked={value} size='small' />}
-                      onChange={(event, checked) => setValue('activated', checked)}
-                    />
-                  )}
-                />
-                <Controller
-                  name='superUser'
-                  control={control}
-                  render={({ field: { value } }) => (
-                    <FormControlLabel
-                      label={APP.ADMIN}
-                      control={<Switch checked={value} size='small' />}
-                      onChange={(event, checked) => setValue('superUser', checked)}
-                    />
-                  )}
-                />
-              </Stack>
-            </Grid>
-          )
-        }
+        {type === 'user' && (
+          <Grid item xs={12}>
+            <Stack direction='row'>
+              <Controller
+                name='activated'
+                control={control}
+                render={({ field: { value } }) => (
+                  <FormControlLabel
+                    label={APP.ACTIVATED_USER}
+                    control={<Switch checked={value} size='small' />}
+                    onChange={(event, checked) => setValue('activated', checked)}
+                  />
+                )}
+              />
+              <Controller
+                name='superUser'
+                control={control}
+                render={({ field: { value } }) => (
+                  <FormControlLabel
+                    label={APP.ADMIN}
+                    control={<Switch checked={value} size='small' />}
+                    onChange={(event, checked) => setValue('superUser', checked)}
+                  />
+                )}
+              />
+            </Stack>
+          </Grid>
+        )}
         <Grid item xs={12} marginTop={1}>
           <Stack direction='row' spacing={2}>
             <Button
               size='large'
               type='submit'
               startIcon={isLoading && <CircularProgress size={20} color='inherit' />}
-              disabled={isLoading && disabled}
-            >
+              disabled={isLoading && disabled}>
               {APP.SAVE}
             </Button>
-            <Button className='light' size='large' onClick={onCancel}>{APP.CANCEL}</Button>
+            <Button className='light' size='large' onClick={onCancel}>
+              {APP.CANCEL}
+            </Button>
           </Stack>
         </Grid>
       </Grid>

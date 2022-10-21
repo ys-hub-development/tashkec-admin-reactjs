@@ -32,28 +32,28 @@ export const theme = createTheme({
 
             '&::placeholder': {
               color: TEXT_COLOR.secondary,
-              opacity: 1
+              opacity: 1,
             },
           },
 
           '&:hover': {
             '.MuiOutlinedInput-notchedOutline': {
               borderColor: 'rgba(137, 146, 169, 0.2)',
-            }
+            },
           },
 
           '&.Mui-focused': {
             '.MuiOutlinedInput-notchedOutline': {
               borderColor: PRIMARY_COLOR.main,
-              borderWidth: '1px'
-            }
+              borderWidth: '1px',
+            },
           },
 
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'rgba(137, 146, 169, 0.2)',
-          }
-        }
-      }
+          },
+        },
+      },
     },
     MuiPaper: {
       styleOverrides: {
@@ -96,20 +96,27 @@ export const theme = createTheme({
     },
     MuiPagination: {
       defaultProps: {
-        variant:'outlined',
+        variant: 'outlined',
         shape: 'rounded',
         color: 'primary',
-        size: 'large'
+        size: 'large',
       },
     },
     MuiPaginationItem: {
       styleOverrides: {
         rounded: {
           borderRadius: 'unset',
-          margin: 0
+          margin: 0,
         },
-      }
-    }
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          fontSize: '14px',
+        },
+      },
+    },
   },
   typography: TypographyComponent(),
 })
