@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import { SectionHeading } from 'Components/Section'
 import { APP } from 'Constants/App'
-import { NewsForm } from '../Organisms'
+import { EventForm } from '../Organisms'
 
 export default () => {
   return (
@@ -10,7 +10,7 @@ export default () => {
         <SectionHeading title={APP.EDIT_NEWS} />
       </Grid>
       <Grid item xs={12}>
-        <NewsForm />
+        <EventForm />
       </Grid>
     </Grid>
   )
